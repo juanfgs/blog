@@ -13,9 +13,10 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/admin.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +35,7 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -44,24 +45,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Juanfgs</a>
+                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/">Home</a>
+                        <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="/about-me">About</a>
+                        <a href="/admin/post/new">New Post</a>
                     </li>
                     <li>
-                        <a href="/categories">Sample Post</a>
+                        <a href="post.html">Categories</a>
                     </li>
-                    <li>
-                        <a href="/contact">Contact</a>
-                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -72,7 +71,7 @@
     <!-- Page Header -->
 
     {{ .LayoutContent }}
-    <!-- Set your background image for this header on the line below. -->
+
 
 
     <!-- Footer -->
@@ -119,8 +118,18 @@
     <script src="/static/js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/static/js/clean-blog.min.js"></script>
 
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>	
+<script type="text/javascript">
+	$(document).ready(function(){
+		tinymce.init({
+			    plugins: "link,code",
+			    selector: "textarea.tinymce"
+		 });
+
+	});
+
+</script>
 </body>
 
 </html>
