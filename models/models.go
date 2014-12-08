@@ -6,7 +6,10 @@ import (
 )
 
 func init(){
-	orm.RegisterModel(new(Post))
+	orm.RegisterModel(new(User))
 	orm.RegisterModel(new(Category))
+	orm.RegisterModel(new(Post))
+
+
 	orm.RegisterDataBase("default", "mysql", "root:fusion87@/goblog?charset=utf8")
 }

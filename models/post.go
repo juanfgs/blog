@@ -15,7 +15,7 @@ type Post struct {
 	UpdatedAt time.Time
 	Photo string `orm:"null"`
 	Category *Category `orm:"rel(fk);null"`
-
+	User *User `orm:"rel(fk)"`
 }
 
 func (this *Post) TableName() string{

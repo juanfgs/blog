@@ -13,5 +13,11 @@ func init() {
 	beego.Router("/admin/post/new", &controllers.AdminController{}, "post:NewPostWrite")
 
 
+	beego.Router("/login", &controllers.UsersController{}, "get:Login")
+	beego.Router("/login/process", &controllers.UsersController{}, "post:LoginPost")
+	beego.Router("/logout", &controllers.UsersController{}, "get:Logout")
+	beego.Router("/register/process", &controllers.UsersController{}, "post:RegisterPost")
+
+
 }
 

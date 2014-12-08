@@ -70,7 +70,9 @@
     </nav>
 
     <!-- Page Header -->
-
+    {{.flash.error}}
+    {{.flash.warning}}
+    {{.flash.notice}}
     {{ .LayoutContent }}
     <!-- Set your background image for this header on the line below. -->
 
