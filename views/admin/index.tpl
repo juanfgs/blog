@@ -52,14 +52,17 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                     </li>
+		    {{  if .User }}
                     <li>
                         <a href="/admin/post/new">New Post</a>
                     </li>
                     <li>
                         <a href="post.html">Categories</a>
                     </li>
+
+		    {{ end }}
 
                 </ul>
             </div>
@@ -69,6 +72,30 @@
     </nav>
 
     <!-- Page Header -->
+    {{ if .flash.error  }}
+    <div class="col-lg-12" id="ErrorArea">
+      <div class="well col-md-6 col-md-offset-3">
+	{{.flash.error}}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ if .flash.notice  }}
+    <div class="col-lg-12" id="ErrorArea">
+      <div class="well col-md-6 col-md-offset-3">
+	{{.flash.notice}}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ if .flash.warning  }}
+    <div class="col-lg-12" id="ErrorArea">
+      <div class="well col-md-6 col-md-offset-3">
+	{{.flash.warning}}
+      </div>
+    </div>
+    {{ end }}
+
 
     {{ .LayoutContent }}
 

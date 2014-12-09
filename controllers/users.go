@@ -22,7 +22,7 @@ func (this *UsersController) LoginPost() {
 
 	username := this.GetString("Username")
 	password := this.GetString("Password")
-
+	flash := beego.NewFlash()
 	if user, err := models.GetUserByName(username); err == nil {
 		if user.CheckPassword(password) {
 			var sessionName = beego.AppConfig.String("SessionName")
@@ -31,10 +31,24 @@ func (this *UsersController) LoginPost() {
 
 			if v == nil {
 				this.SetSession(sessionName, user.Id)
+			
 			}		
+			flash.Notice("Login Successful")
+			flash.Store(&this.Controller)
+			this.Redirect("/login", 302)
 			this.Redirect("/", 302)
+		} else {
+
+			flash.Error("Invalid Password")
+			flash.Store(&this.Controller)
+			this.Redirect("/login", 302)
+			return
 		}
 	} else {
+		flash.Error( "User doesn't exist")
+		flash.Store(&this.Controller)
+		this.Redirect("/login", 302)
+		return
 		log.Println(err)
 	}
 
@@ -46,21 +60,41 @@ func (this *UsersController) Logout() {
 }
 
 func (this *UsersController) RegisterPost() {
+	o := orm.NewOrm()
+
+	userscount, _ := o.QueryTable("users").Count()
+	flash := beego.NewFlash()
+	if userscount > 0 && beego.AppConfig.String("SingleUser") == "yes" {
+		flash.Error("Single user mode enabled and administrator already exists")
+		flash.Store(&this.Controller)
+		this.Redirect("/login", 302)
+		return
+	}
+
 
 	valid := validation.Validation{}
 	username := this.GetString("Username")
+
+
 	password := this.GetString("Password")
 	valid.Required(username, "Username")
 	valid.Required(password, "Password")
+
+	if o.QueryTable("users").Filter("username", username).Exist() {
+		flash.Error( "User already exists")
+		flash.Store(&this.Controller)
+		this.Redirect("/login", 302)
+		return 
+	}
+
 	if valid.HasErrors() {
-		flash := beego.NewFlash()
 		for _, err := range valid.Errors {
 			flash.Error(err.Key, err.Message)
-			log.Println(err)
+			flash.Store(&this.Controller)
+			this.Redirect("/login", 302)
+			return
 		}
-
 	} else {
-		o := orm.NewOrm()
 
 		user := new(models.User)
 		user.Username = username
@@ -70,10 +104,13 @@ func (this *UsersController) RegisterPost() {
 		if err != nil {
 			log.Println(err)
 		}
-
+		flash.Notice("User created successfully")
+		flash.Store(&this.Controller)
+		this.Redirect("/login", 302)
+		return
 	}
-	this.Redirect("/", 302)
-
+	this.Redirect("/login", 302)
+	return
 }
 
 func (this *UsersController) URLMapping() {

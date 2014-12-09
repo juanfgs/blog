@@ -7,7 +7,7 @@
                     <div class="post-heading">
                         <h1>{{ .Post.Title }}</h1>
                         <h2 class="subheading">{{ .Post.Tagline}}</h2>
-                        <span class="meta">Posted by <a href="http://juanfgs.eosweb.info">Juan</a> {{ .Post.CreatedAt}}</span>
+                        <span class="meta">Posted by <a href="http://juanfgs.eosweb.info">{{ .Post.Author.Username}}</a> {{ .Post.CreatedAt}}</span>
                     </div>
                 </div>
             </div>

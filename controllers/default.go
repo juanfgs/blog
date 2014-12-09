@@ -2,14 +2,29 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"github.com/juanfgs/blog/models"
+
 )
 
 type MainController struct {
 	beego.Controller
 }
 
-func (c *MainController) Get() {
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
-	c.TplNames = "index.tpl"
+
+
+
+func (this *MainController) Prepare(){
+	_ = beego.ReadFromRequest(&this.Controller)
+	var sessionName = beego.AppConfig.String("SessionName")
+	v := this.GetSession(sessionName)
+	
+	if v != nil { //user logged in
+		user, err:= models.NewUser(v.(int))
+		if err != nil {
+			this.Abort("401")
+			return
+		}
+		this.Data["User"] = user
+	}
+
 }

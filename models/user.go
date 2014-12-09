@@ -7,7 +7,7 @@ import (
 
 type User struct {
 	Id int
-	Username string `orm:"size(100)"`
+	Username string `orm:"size(100);unique"`
 	Password string `orm:"size(100)"`
 	Salt string `orm:"size(10)"`
 
@@ -42,3 +42,10 @@ func  GetUserByName(username string) (user User, err error){
 	err = o.QueryTable("users").Filter("username",username).One(&user)
 	return
 }
+
+func NewUser (id int) (user User, err error){
+	o := orm.NewOrm()
+	err = o.QueryTable("users").Filter("id",id).One(&user)
+	return
+}
+

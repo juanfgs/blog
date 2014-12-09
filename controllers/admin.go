@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/juanfgs/blog/models"
 	"time"
+	"log"
 )
 
 type AdminController struct {
@@ -40,8 +41,16 @@ func (this *AdminController) NewPostWrite(){
 	post.Published = true
 	post.CreatedAt = time.Now()
 	post.UpdatedAt = time.Now()
-	o.Insert(post)
+	if user, ok := this.Data["User"].(models.User); ok {
+		post.Author = &user
+	}
 
+
+	_, err := o.Insert(post)
+	if err != nil {
+		log.Println(err)
+		this.Abort("500")
+	}
 	this.Redirect("/admin/", 302)
 }
 

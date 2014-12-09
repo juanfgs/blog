@@ -42,9 +42,11 @@ func (this *PostsController) Show() {
 	
 	o := orm.NewOrm()
 	err = o.QueryTable("posts").Filter("id", id).One(&post)
+	_, err = o.LoadRelated(&post, "Author")
 	if err != nil {
 		this.Abort("404")
 	}
+
 	this.Data["Post"] = post
 	this.TplNames = "post.tpl"
 }

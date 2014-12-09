@@ -15,6 +15,9 @@ func main() {
 			ctx.Redirect(302, "/login")
 		}
 	}
+	
+
+	
 	beego.InsertFilter("/admin/*", beego.BeforeRouter, FilterUser)
 	beego.Run()
 }

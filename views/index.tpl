@@ -62,6 +62,9 @@
                     <li>
                         <a href="/contact">Contact</a>
                     </li>
+                    <li>
+                        <a href="/admin/">Welcome {{ .User.Username }}</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -70,9 +73,8 @@
     </nav>
 
     <!-- Page Header -->
-    {{.flash.error}}
-    {{.flash.warning}}
-    {{.flash.notice}}
+ 
+
     {{ .LayoutContent }}
     <!-- Set your background image for this header on the line below. -->
 
