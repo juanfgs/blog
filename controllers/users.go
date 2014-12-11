@@ -35,8 +35,8 @@ func (this *UsersController) LoginPost() {
 			}		
 			flash.Notice("Login Successful")
 			flash.Store(&this.Controller)
-			this.Redirect("/login", 302)
-			this.Redirect("/", 302)
+			this.Redirect("/admin/", 302)
+			return
 		} else {
 
 			flash.Error("Invalid Password")

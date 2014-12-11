@@ -17,7 +17,7 @@ func main() {
 	}
 	
 
-	
+	beego.InsertFilter("/admin/", beego.BeforeRouter, FilterUser)	
 	beego.InsertFilter("/admin/*", beego.BeforeRouter, FilterUser)
 	beego.Run()
 }

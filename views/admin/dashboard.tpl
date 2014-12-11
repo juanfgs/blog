@@ -3,14 +3,15 @@
       {{ range $key, $post := .posts }}
 
       	  <li class="list-group-item">
-	<a href="/post/{{ $post.Id }}">
+	<a href="/admin/post/edit/{{ $post.Id }}">
 	  <h2 class="post-title">
 	    {{ $post.Title }}
 	  </h2>
-	  <h3 class="post-subtitle">
-	    {{ str2html $post.Content }}
-	  </h3>
+
 	</a>
+	<p>
+	    {{ str2html $post.Tagline }}
+	  </p>
 	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>
 
       <hr>

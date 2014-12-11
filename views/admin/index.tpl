@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="/admin/">Admin Panel</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,8 +58,13 @@
                     <li>
                         <a href="/admin/post/new">New Post</a>
                     </li>
-                    <li>
-                        <a href="post.html">Categories</a>
+                    <li class="dropdown">
+		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
+		      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/admin/categories/">List</a></li>
+			<li><a href="/admin/categories/new">New</a></li>
+		      </ul>
+
                     </li>
 
 		    {{ end }}
