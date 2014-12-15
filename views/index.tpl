@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -53,18 +54,29 @@
                     <li>
                         <a href="/">Home</a>
                     </li>
-                    <li>
-                        <a href="/about-me">About</a>
+
+
+                    <li class="dropdown">
+		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
+		      <ul class="dropdown-menu" role="menu">
+			{{ range $key, $category :=  .Categories}}
+			<li><a href="/categories/{{ $category.Id }}">{{ $category.Title }}</a></li>
+			{{ end }}
+		      </ul>
+
                     </li>
-                    <li>
-                        <a href="/categories">Sample Post</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact</a>
-                    </li>
+
+
+
+		    {{ if .User }}
                     <li>
                         <a href="/admin/">Welcome {{ .User.Username }}</a>
                     </li>
+		    {{ else }}
+		    <li>
+                        <a href="/login/">Log In</a>
+                    </li>
+		    {{ end }}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

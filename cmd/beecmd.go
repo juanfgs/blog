@@ -9,7 +9,7 @@ import (
 func main() {
 
 
-	orm.RegisterDataBase("default", "mysql", "root:fusion87@/goblog?charset=utf8")
 
+	orm.RegisterDataBase("default", "mysql", "root:fusion87@/goblog?charset=utf8")
 	orm.RunCommand()
 }

@@ -12,10 +12,29 @@
       <label for="Content">Post Content</label>
       <textarea class="form-control required tinymce" name="Content">	</textarea>
   </div>
+
+  <div class="form-group">
+    <label for="Keywords">SEO Keywords</label>
+    <input type="text" class="form-control" name="Keywords" id="Tagline" placeholder="Enter ">
+  </div>
+  <div class="form-group">
+      <label for="Description">SEO Description</label>
+      <textarea class="form-control required" name="Description">	</textarea>
+  </div>
+
+  <div class="form-group">
+      <label for="Category">Category</label>
+      <select class="form-control" name="category_id">
+      {{ range $key, $category := .Categories}}
+      <option value="{{ $category.Id}}">{{ $category.Title}} </option>
+      {{ end }}
+      </select>
+ </div>
   <div class="form-group">
       <label for="Published">Published</label>
       <input type="checkbox" value="1" name="Published"/>
 </div>
+
 
   <button type="submit" class="btn btn-default">Submit</button>
 

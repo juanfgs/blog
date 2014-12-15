@@ -1,12 +1,12 @@
 
-<header class="intro-header" style="background-image: url('/static/img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('/static/img/category-bg.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="site-heading">
           <h1>{{ .HeroTitle }}</h1>
           <hr class="small">
-          <span class="subheading">{{.HeroTagline }}</span>
+          <span class="subheading">	    {{ str2html .HeroTagline }}</span>
         </div>
       </div>
     </div>
@@ -19,14 +19,13 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       {{ range $key, $post := .posts }}
       <div class="post-preview">
-	  <a href="/post/{{ $post.Id }}">
+	<a href="/post/{{ $post.Id }}">
 	  <h2 class="post-title">
 	    {{ $post.Title }}
-	  </h2>	
-	  </a>
-	  <p>
+	  </h2>
+	</a>
 	    {{ str2html $post.Content }}
-	    </p>
+
 
 	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>
       </div>

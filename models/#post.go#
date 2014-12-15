@@ -11,8 +11,6 @@ type Post struct {
 	Tagline string `orm:"size(100);null"`
 	Content string `orm:"type(text)"`
 	Published bool `orm:default(false)`
-	Description string `orm:"type(text)"`
-	Keywords string `orm:"size(100)"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Photo string `orm:"null"`

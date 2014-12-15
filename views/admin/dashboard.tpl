@@ -9,9 +9,10 @@
 	  </h2>
 
 	</a>
-	<p>
-	    {{ str2html $post.Tagline }}
-	  </p>
+		<p>	
+		    {{ str2html $post.Tagline }}
+	    	  </p>
+		  <a href="/admin/post/delete/{{ $post.Id }}" class="btn btn-primary">Delete post</a>
 	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>
 
       <hr>

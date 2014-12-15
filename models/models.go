@@ -5,6 +5,9 @@ import (
 	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
 
+
+
+
 func init(){
 	orm.RegisterModel(new(User))
 	orm.RegisterModel(new(Category))

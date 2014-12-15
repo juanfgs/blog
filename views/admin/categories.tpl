@@ -9,7 +9,7 @@
 
 
 	</a>
-
+			  <a href="/admin/category/delete/{{ $category.Id }}" class="btn btn-primary">Delete</a>
       </li> 
       {{ end }}
       </ul>

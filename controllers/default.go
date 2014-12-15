@@ -3,15 +3,12 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/juanfgs/blog/models"
-
+	"github.com/astaxie/beego/orm"
 )
 
 type MainController struct {
 	beego.Controller
 }
-
-
-
 
 func (this *MainController) Prepare(){
 	_ = beego.ReadFromRequest(&this.Controller)
@@ -26,5 +23,14 @@ func (this *MainController) Prepare(){
 		}
 		this.Data["User"] = user
 	}
+	o := orm.NewOrm()
+	var categories []models.Category
+	o.QueryTable("categories").All(&categories)
+	this.Data["Categories"] = &categories
+
+
 
 }
+
+
+

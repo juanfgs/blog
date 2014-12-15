@@ -13,6 +13,27 @@
       <textarea class="form-control required tinymce" name="Content">{{ .Post.Content }}	</textarea>
   </div>
   <div class="form-group">
+    <label for="Keywords">SEO Keywords</label>
+    <input type="text" class="form-control" name="Keywords" id="Tagline" placeholder="Enter SEO Keywords" value="{{ .Post.Keywords}}">
+  </div>
+  <div class="form-group">
+      <label for="Description">SEO Description</label>
+      <textarea class="form-control required" name="Description">{{.Post.Description}}	</textarea>
+  </div>
+  <div class="form-group">
+      <label for="Category">Category</label>
+      <select class="form-control" name="CategoryId">
+
+      {{ range $key, $category := .Categories}}
+
+	       	 <option value="{{ $category.Id}}">{{ $category.Title}} </option>
+
+      {{ end }}
+
+      </select>
+
+ </div>
+  <div class="form-group">
       <label for="Published">Published</label>
       <input type="checkbox" value="1" name="Published" {{ if .Post.Published }} checked="checked" {{ end }}/>
 </div>

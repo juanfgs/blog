@@ -1,0 +1,8 @@
+.navbar-custom .nav ul.dropdown-menu li,
+.navbar-custom .nav ul.dropdown-menu a {
+    color:#2c2c2c;
+    line-height:20px;
+    height:24px;
+    padding-top:2px;
+    padding-bottom:2px;
+}
