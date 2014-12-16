@@ -9,8 +9,10 @@
     {{ if .Post}}
     <meta name="description" content=" {{.Post.Description }}">
     <meta name="keywords" content="{{ .Post.Keywords }}">
-    {{ end   }}
-
+    {{ else   }}
+    <meta name="description" content="My personal blog, it's main topics are programming, my personal life, and some food for thought.">
+    <meta name="keywords" content="Golang, Go, Blog, Laravel, PHP, MVC, Javascript, JSON, NoSQL, MongoDB, Web Developer">
+    {{ end}}
     <meta name="author" content="Juan F. Giménez Silva">
 
     <title>{{ .Title }}</title>
