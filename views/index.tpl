@@ -6,8 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {{ if .Post}}
+    <meta name="description" content=" {{.Post.Description }}">
+    <meta name="keywords" content="{{ .Post.Keywords }}">
+    {{ end   }}
+
+    <meta name="author" content="Juan F. Giménez Silva">
 
     <title>{{ .Title }}</title>
 
