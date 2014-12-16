@@ -274,8 +274,8 @@ func (this *AdminController) NewPostWrite(){
 	post.Tagline = this.GetString("Tagline")
 	post.Content = this.GetString("Content")
 
-	post.Description = this.GetString("Keywords")
-	post.Description = this.GetString("Keywords")
+	post.Description = this.GetString("Description")
+	post.Keywords = this.GetString("Keywords")
 	published, errbool := this.GetBool("Published")
 	if errbool == nil {
 		post.Published = published
