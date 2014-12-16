@@ -6,3 +6,13 @@
     padding-top:2px;
     padding-bottom:2px;
 }
+
+#gopher{
+    position:fixed;
+    bottom:0;
+    right:100px;
+    display:block;
+    width:250px;
+    height:160px;
+    background:url('../img/gopher.png') top transparent no-repeat;
+}
