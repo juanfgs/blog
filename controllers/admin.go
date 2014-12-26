@@ -24,7 +24,7 @@ func (this *AdminController) Index() {
 		log.Println(err)
 	}
 	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, countPosts)
-	o.QueryTable("posts").Limit(postsPerPage, paginator.Offset()).All(&posts)
+	o.QueryTable("posts").Limit(postsPerPage, paginator.Offset()).OrderBy("-created_at").All(&posts)
 
 
 	this.Data["posts"] = posts
