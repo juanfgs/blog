@@ -133,7 +133,7 @@
             </div>
         </div>
     </footer>
-    <div id="gopher"></div>
+
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
 
