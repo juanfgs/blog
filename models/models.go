@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
 
@@ -12,7 +13,13 @@ func init(){
 	orm.RegisterModel(new(User))
 	orm.RegisterModel(new(Category))
 	orm.RegisterModel(new(Post))
+	
+	dbpass := beego.AppConfig.String("dbpass")
+	dbuser := beego.AppConfig.String("dbuser")
+	dbhost := beego.AppConfig.String("dbhost")
+	dbname := beego.AppConfig.String("dbname")
+	dbcharset := beego.AppConfig.String("dbcharset")
+	
 
-
-	orm.RegisterDataBase("default", "mysql", "root:fusion87@/goblog?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", dbuser+":"+dbpass+"@"+dbhost+"/"+dbname+ "?charset=" +dbcharset)
 }

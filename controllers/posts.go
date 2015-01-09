@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/juanfgs/blog/models"
 	"github.com/astaxie/beego/utils/pagination"
@@ -19,7 +20,7 @@ func (this *PostsController) Index() {
 	this.Data["HeroTagline"] = "Mostly programming stuff, but also my life"
 	var posts []models.Post
 	o := orm.NewOrm()
-	postsPerPage := 10
+	postsPerPage, err := beego.AppConfig.Int("postsperpage")
 	countPosts, err := o.QueryTable("posts").Filter("published", 1).Count()
 	if err != nil {
 		log.Println(err)
