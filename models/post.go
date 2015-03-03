@@ -18,6 +18,7 @@ type Post struct {
 	Photo string `orm:"null"`
 	Category *Category `orm:"rel(fk);null"`
 	Author *User `orm:"rel(fk)"`
+	Comments []*Comment `orm:"reverse(many)"`
 }
 
 func (this *Post) TableName() string{
