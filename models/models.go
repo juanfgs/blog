@@ -13,7 +13,7 @@ func init(){
 	orm.RegisterModel(new(User))
 	orm.RegisterModel(new(Category))
 	orm.RegisterModel(new(Post))
-	
+	orm.RegisterModel(new(Comment))	
 	dbpass := beego.AppConfig.String("dbpass")
 	dbuser := beego.AppConfig.String("dbuser")
 	dbhost := beego.AppConfig.String("dbhost")

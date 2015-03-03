@@ -58,6 +58,19 @@ func (this *PostsController) Show() {
 
 	this.Data["HeroTagline"] = "Mostly programming stuff, but also my life"
 	this.Data["Post"] = post
+
+
+
+
+
+
+	_, err = o.LoadRelated(&post, "Comments")
+	if err == nil {
+		this.Data["Comments"] = post.Comments
+	} else {
+		log.Println(err)
+	}
+
 	this.TplNames = "post.tpl"
 }
 

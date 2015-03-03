@@ -8,6 +8,7 @@ import (
 func init() {
 	beego.Router("/", &controllers.PostsController{}, "get:Index")
 	beego.Router("/post/:id([0-9]+)", &controllers.PostsController{}, "get:Show")
+	beego.Router("/comment/new",&controllers.CommentsController{}, "post:CommentWrite")	
 	beego.Router("/categories/:id([0-9]+)", &controllers.CategoriesController{}, "get:Show")
 	beego.Router("/admin/", &controllers.AdminController{}, "get:Index")
 	beego.Router("/admin/post/new", &controllers.AdminController{}, "get:NewPost")
@@ -26,6 +27,7 @@ func init() {
 	beego.Router("/logout", &controllers.UsersController{}, "get:Logout")
 	beego.Router("/register/process", &controllers.UsersController{}, "post:RegisterPost")
 
-
+//	beego.Router("/images/:height([0-9])x:width[0-9]/:image:string", &controllers.ThumbnailsController{}, "get:showImage")
+	
 }
 
