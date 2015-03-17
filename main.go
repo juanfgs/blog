@@ -3,10 +3,13 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
-	_"github.com/juanfgs/blog/models"
+	_ "github.com/juanfgs/blog/models"
 	_ "github.com/juanfgs/blog/routers"
+
 )
+
 var sessionName = beego.AppConfig.String("SessionName")
+
 func main() {
 
 	var FilterUser = func(ctx *context.Context) {
@@ -15,14 +18,15 @@ func main() {
 			ctx.Redirect(302, "/login")
 		}
 	}
-	
+
 	beego.AddFuncMap("equals", equals)
-	beego.InsertFilter("/admin/", beego.BeforeRouter, FilterUser)	
+	beego.AddFuncMap("excerpt", excerpt)	
+	beego.InsertFilter("/admin/", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/admin/*", beego.BeforeRouter, FilterUser)
 	beego.Run()
 }
 
-func equals(a interface{}, b interface{} ) bool {
+func equals(a interface{}, b interface{}) bool {
 	if a == nil || b == nil {
 		return false
 	}
@@ -31,4 +35,8 @@ func equals(a interface{}, b interface{} ) bool {
 		return true
 	}
 	return false
+}
+
+func excerpt(content string) string {
+	return content[0:400] + "..."
 }

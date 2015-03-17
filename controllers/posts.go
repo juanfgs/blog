@@ -22,13 +22,16 @@ func (this *PostsController) Index() {
 	o := orm.NewOrm()
 	postsPerPage, err := beego.AppConfig.Int("postsperpage")
 	countPosts, err := o.QueryTable("posts").Filter("published", 1).Count()
+
 	if err != nil {
 		log.Println(err)
 	}
 	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, countPosts)
 	
 	o.QueryTable("posts").Filter("published", 1).Limit(postsPerPage, paginator.Offset()).OrderBy("-created_at").All(&posts)
-
+	for idx,_ := range posts {
+		_, err = o.LoadRelated(&posts[idx], "Comments")
+	}
 	this.Data["posts"] = posts
 
 	this.TplNames = "posts.tpl"

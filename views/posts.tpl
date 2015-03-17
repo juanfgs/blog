@@ -25,8 +25,12 @@
 	  </h2>	
 	  </a>
 	  <p>
-	    {{ str2html $post.Content }}
-	    </p>
+	    {{  $post.Content | excerpt | str2html}}
+	    <p>
+	    <a  href="/post/{{ $post.Id }}">Leer Más</a>
+	    <span class="badge">Comments : {{ len $post.Comments }}</span>	    
+	  </p>
+	</p>
 
 	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>
       </div>
