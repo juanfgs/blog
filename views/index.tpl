@@ -51,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Juanfgs</a>
+                <a class="navbar-brand" href="/">Juan F. Giménez Silva</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
