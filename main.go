@@ -5,7 +5,8 @@ import (
 	"github.com/astaxie/beego/context"
 	_ "github.com/juanfgs/blog/models"
 	_ "github.com/juanfgs/blog/routers"
-
+	"github.com/russross/blackfriday"
+	"github.com/microcosm-cc/bluemonday"
 )
 
 var sessionName = beego.AppConfig.String("SessionName")
@@ -20,23 +21,28 @@ func main() {
 	}
 
 	beego.AddFuncMap("equals", equals)
-	beego.AddFuncMap("excerpt", excerpt)	
+	beego.AddFuncMap("renderMarkDown", renderMarkDown)	
+
 	beego.InsertFilter("/admin/", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/admin/*", beego.BeforeRouter, FilterUser)
 	beego.Run()
 }
 
 func equals(a interface{}, b interface{}) bool {
-	if a == nil || b == nil {
+	if a == nil || b == nil { 
 		return false
 	}
-
+ 
 	if a == b {
 		return true
 	}
 	return false
 }
 
-func excerpt(content string) string {
-	return content[0:400] + "..."
+func renderMarkDown(input string) string {
+	
+	unsafe := blackfriday.MarkdownCommon([]byte(input))
+	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	return string(html)
 }
+

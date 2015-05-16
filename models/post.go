@@ -10,6 +10,7 @@ type Post struct {
 	Title string `orm:"size(100)"`
 	Tagline string `orm:"size(100);null"`
 	Content string `orm:"type(text)"`
+	ContentType string `orm:"size(100)"`	
 	Published bool `orm:default(false)`
 	Description string `orm:"type(text)"`
 	Keywords string `orm:"size(100)"`

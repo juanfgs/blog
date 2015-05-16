@@ -25,7 +25,8 @@
 	  </h2>	
 	  </a>
 	  <p>
-	    {{  $post.Content  | str2html}}
+
+	    {{ renderMarkDown $post.Content | str2html   }}
 	    <p>
 	    <a  href="/post/{{ $post.Id }}">Leer Más</a>
 	    <span class="badge">Comments : {{ len $post.Comments }}</span>	    
