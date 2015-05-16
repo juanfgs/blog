@@ -18,3 +18,12 @@ body {
     height:160px;
     background:url('../img/gopher.png') top transparent no-repeat;
 }
+
+code {
+    padding: 2px 4px;
+    font-size: 13px;
+    color: #9c9c9c;
+    background-color: #AFAFAF;
+
+
+}

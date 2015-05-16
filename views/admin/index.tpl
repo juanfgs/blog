@@ -56,6 +56,9 @@
                     </li>
 		    {{  if .User }}
                     <li>
+                        <a href="/admin/media/">Media</a>
+                    </li>		    
+                    <li>
                         <a href="/admin/post/new">New Post</a>
                     </li>
                     <li class="dropdown">
@@ -151,17 +154,6 @@
 
     <!-- Custom Theme JavaScript -->
 
-<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>	
-<script type="text/javascript">
-	$(document).ready(function(){
-		tinymce.init({
-			    plugins: "link,code",
-			    selector: "textarea.tinymce"
-		 });
-
-	});
-
-</script>
 </body>
 
 </html>

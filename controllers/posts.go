@@ -15,9 +15,9 @@ type PostsController struct {
 func (this *PostsController) Index() {
 	this.Layout = "index.tpl"
 	this.Data["Title"] = "Juan Giménez Silva's Blog"
-	this.Data["HeroTitle"] = "Welcome"
+	this.Data["HeroTitle"] = "Bienvenidos a mi blog"
 
-	this.Data["HeroTagline"] = "Mostly programming stuff, but also my life"
+	this.Data["HeroTagline"] = "Compartiendo un poco de lo que no sé"
 	var posts []models.Post
 	o := orm.NewOrm()
 	postsPerPage, err := beego.AppConfig.Int("postsperpage")

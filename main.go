@@ -21,8 +21,9 @@ func main() {
 	}
 
 	beego.AddFuncMap("equals", equals)
-	beego.AddFuncMap("renderMarkDown", renderMarkDown)	
-
+	beego.AddFuncMap("renderPost", renderPost)
+	beego.AddFuncMap("renderSafeMarkDown", renderSafeMarkDown)
+	beego.AddFuncMap("renderMarkDown", renderMarkDown)			
 	beego.InsertFilter("/admin/", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/admin/*", beego.BeforeRouter, FilterUser)
 	beego.Run()
@@ -37,12 +38,25 @@ func equals(a interface{}, b interface{}) bool {
 		return true
 	}
 	return false
-}
+} 
 
 func renderMarkDown(input string) string {
 	
 	unsafe := blackfriday.MarkdownCommon([]byte(input))
+//	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	return string(unsafe)
+}
+func renderSafeMarkDown(input string) string {
+	
+	unsafe := blackfriday.MarkdownCommon([]byte(input))
 	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
 	return string(html)
+}
+func renderPost(content string, contentType string) string {
+	if contentType == "markdown" {
+		return renderMarkDown(content)
+	} else {
+		return content
+	}
 }
 

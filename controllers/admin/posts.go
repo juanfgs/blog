@@ -76,6 +76,7 @@ func (this *PostsController) Edit(){
 	this.Data["Title"] = "Editing Post '"+ post.Title +"'"
 	this.Data["Post"] = post
 
+	
 	this.TplNames = "admin/editpost.tpl"
 }
 
@@ -105,6 +106,10 @@ func (this *PostsController) EditWrite(){
 	if val := this.GetString("Keywords"); val != post.Keywords {
 		post.Keywords = val
 	}
+	if val := this.GetString("ContentType"); val != post.ContentType {
+		post.ContentType = val
+	}
+	
 	if val := this.GetString("Description"); val != post.Description {
 		post.Description = val
 	}
@@ -161,7 +166,9 @@ func (this *PostsController) NewWrite(){
 	} else {
 		post.Published = false
 	}
-
+	if val := this.GetString("ContentType"); val != post.ContentType {
+		post.ContentType = val
+	}
 
 	if val, err := this.GetInt("CategoryId"); err == nil {
 			var category models.Category

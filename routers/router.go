@@ -21,6 +21,8 @@ func init() {
 	//Media routes
 	beego.Router("/admin/media/create", &admin.MediaController{}, "post:Create")
 	beego.Router("/admin/media/upload", &admin.MediaController{}, "get:Upload")
+	beego.Router("/admin/media/", &admin.MediaController{}, "get:Index")	
+	beego.Router("/admin/media/delete/:id([0-9]+)", &admin.MediaController{}, "get:Delete")	
 	
 	beego.Router("/admin/categories/", &admin.CategoriesController{}, "get:Index")
 	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "get:New")

@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-               	{{ renderMarkDown .Post.Content | str2html }}
+               	{{ renderPost .Post.Content .Post.ContentType | str2html }}
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                         <h4 class="media-heading">{{ $comment.Commenter}}
                             <small>{{ $comment.CreatedAt}}</small>
                         </h4>
-			{{ renderMarkDown $comment.Comment | str2html }}
+			{{ renderSafeMarkDown $comment.Comment | str2html }}
                     </div>
                 </div>
 		{{ end }}

@@ -7,6 +7,7 @@ import (
 type Media struct {
 	Id int
 	Filename string `orm: "size(200)"`
+	Type string `orm: "size(100)"`	
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
