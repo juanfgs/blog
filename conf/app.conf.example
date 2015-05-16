@@ -1,7 +1,7 @@
 appname = blog
 httpport = 8080
 runmode = prod
-postsperpage = 1
+postsperpage = 10
 dbpass = fusion87
 dbuser = root
 dbname = goblog
@@ -14,3 +14,5 @@ SessionName = gosessionid
 SingleUser = yes
 
 recaptchaKey = 6LcBH_oSAAAAAKGlS0ZXxDtPn-QtQtzfiHCwmqkl
+
+uploads_dir = static/uploads/
