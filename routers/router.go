@@ -17,6 +17,11 @@ func init() {
 	beego.Router("/admin/post/edit/:id([0-9]+)", &admin.PostsController{}, "get:Edit")
 	beego.Router("/admin/post/edit/:id([0-9]+)", &admin.PostsController{}, "post:EditWrite")
 	beego.Router("/admin/post/delete/:id([0-9]+)", &admin.PostsController{}, "get:Delete")
+
+	//Media routes
+	beego.Router("/admin/media/create", &admin.MediaController{}, "post:Create")
+	beego.Router("/admin/media/upload", &admin.MediaController{}, "get:Upload")
+	
 	beego.Router("/admin/categories/", &admin.CategoriesController{}, "get:Index")
 	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "get:New")
 	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "post:NewWrite")
