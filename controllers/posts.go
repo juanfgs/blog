@@ -88,14 +88,11 @@ func (this *PostsController) Search(){
 	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, countPosts)
 	this.Data["Title"] = "Search:" + keyword
 	this.Data["HeroTitle"] = "Search:" + keyword
-	
-	
-//	o.QueryTable("posts").Filter("title__icontains", keyword).Filter("tagline__icontains",keyword).Filter("content__icontains", "keyword").Limit(postsPerPage, paginator.Offset()).All(&posts)
 
 	keyword = "%"+keyword+"%"
 
 
-	num, err := o.Raw("SELECT * FROM `posts` WHERE title LIKE ? OR content LIKE ? ORDER BY created_at DESC LIMIT ? OFFSET ? ", keyword,keyword,postsPerPage,paginator.Offset()).QueryRows(&posts)
+	num, err := o.Raw("SELECT * FROM `posts` WHERE published = 1 AND (title LIKE ? OR content LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ? ", keyword,keyword,postsPerPage,paginator.Offset()).QueryRows(&posts)
 
 
 	this.Data["HeroTagline"] = fmt.Sprintf( "Entries: %d", num)
