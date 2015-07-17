@@ -3,13 +3,15 @@ package routers
 import (
 	"github.com/astaxie/beego"
 	"github.com/juanfgs/blog/controllers"
-	"github.com/juanfgs/blog/controllers/admin"	
+	"github.com/juanfgs/blog/controllers/admin"
 )
 
 func init() {
 	beego.Router("/", &controllers.PostsController{}, "get:Index")
+	beego.Router("/search/", &controllers.PostsController{}, "get:Search")
 	beego.Router("/post/:id([0-9]+)", &controllers.PostsController{}, "get:Show")
-	beego.Router("/comment/new",&controllers.CommentsController{}, "post:CommentWrite")	
+
+	beego.Router("/comment/new", &controllers.CommentsController{}, "post:CommentWrite")
 	beego.Router("/categories/:id([0-9]+)", &controllers.CategoriesController{}, "get:Show")
 	beego.Router("/admin/", &admin.PostsController{}, "get:Index")
 	beego.Router("/admin/post/new", &admin.PostsController{}, "get:New")
@@ -21,9 +23,9 @@ func init() {
 	//Media routes
 	beego.Router("/admin/media/create", &admin.MediaController{}, "post:Create")
 	beego.Router("/admin/media/upload", &admin.MediaController{}, "get:Upload")
-	beego.Router("/admin/media/", &admin.MediaController{}, "get:Index")	
-	beego.Router("/admin/media/delete/:id([0-9]+)", &admin.MediaController{}, "get:Delete")	
-	
+	beego.Router("/admin/media/", &admin.MediaController{}, "get:Index")
+	beego.Router("/admin/media/delete/:id([0-9]+)", &admin.MediaController{}, "get:Delete")
+
 	beego.Router("/admin/categories/", &admin.CategoriesController{}, "get:Index")
 	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "get:New")
 	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "post:NewWrite")
@@ -35,7 +37,6 @@ func init() {
 	beego.Router("/logout", &controllers.UsersController{}, "get:Logout")
 	beego.Router("/register/process", &controllers.UsersController{}, "post:RegisterPost")
 
-//	beego.Router("/images/:height([0-9])x:width[0-9]/:image:string", &controllers.ThumbnailsController{}, "get:showImage")
-	
-}
+	//	beego.Router("/images/:height([0-9])x:width[0-9]/:image:string", &controllers.ThumbnailsController{}, "get:showImage")
 
+}

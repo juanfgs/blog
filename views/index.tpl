@@ -73,6 +73,9 @@
                     </li>
 
 
+                    <li>
+                        <a href="#search">Search</a>
+                    </li>
 
 		    {{ if .User }}
                     <li>
@@ -95,7 +98,13 @@
 
     {{ .LayoutContent }}
     <!-- Set your background image for this header on the line below. -->
-
+    <div id="search">
+      <button type="button" class="close">×</button>
+      <form action="/search/" method="GET">
+        <input type="search" value="" name="keyword" placeholder="type keyword(s) here" />
+        <input type="submit" class="btn btn-primary" value="Search">
+      </form>
+    </div>
 
     <!-- Footer -->
     <footer>
