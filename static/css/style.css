@@ -95,4 +95,5 @@ code {
 	opacity: 1;
 	padding: 10px 17px;
 	font-size: 27px;
+	z-index:1000;
 }
