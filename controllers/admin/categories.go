@@ -3,14 +3,14 @@ package admin
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/juanfgs/blog/models"
-	"github.com/juanfgs/blog/controllers"	
 	"github.com/astaxie/beego/utils/pagination"
+	"github.com/juanfgs/blog/controllers"
+	"github.com/juanfgs/blog/models"
 	"log"
 )
 
 type CategoriesController struct {
-	controllers.MainController	
+	controllers.MainController
 }
 
 func (this *CategoriesController) Index() {
@@ -26,22 +26,20 @@ func (this *CategoriesController) Index() {
 	paginator := pagination.SetPaginator(this.Ctx, categoriesPerPage, countCategories)
 	o.QueryTable("categories").Limit(categoriesPerPage, paginator.Offset()).All(&categories)
 
-
-
 	this.Data["Categories"] = categories
 
 	this.TplNames = "admin/categories.tpl"
 }
 
-func (this *CategoriesController) New(){
+func (this *CategoriesController) New() {
 	this.Layout = "admin/index.tpl"
 	this.Data["Title"] = "Create new category"
 	this.TplNames = "admin/newcategory.tpl"
 }
 
-func (this *CategoriesController) Edit(){
+func (this *CategoriesController) Edit() {
 	this.Layout = "admin/index.tpl"
-	categoryId, err:= this.GetInt(":id")
+	categoryId, err := this.GetInt(":id")
 
 	if err != nil {
 		this.Abort("400")
@@ -51,21 +49,18 @@ func (this *CategoriesController) Edit(){
 	category := new(models.Category)
 
 	o.QueryTable("categories").Filter("id", categoryId).One(category)
-	this.Data["Title"] = "Editing Category '"+ category.Title +"'"
+	this.Data["Title"] = "Editing Category '" + category.Title + "'"
 	this.Data["Category"] = category
 	this.TplNames = "admin/editcategory.tpl"
 }
 
-func (this *CategoriesController) NewWrite(){
+func (this *CategoriesController) NewWrite() {
 	flash := beego.NewFlash()
 	o := orm.NewOrm()
 
 	category := new(models.Category)
 	category.Title = this.GetString("Title")
 	category.Description = this.GetString("Description")
-
-
-
 
 	_, err := o.Insert(category)
 	if err != nil {
@@ -80,8 +75,8 @@ func (this *CategoriesController) NewWrite(){
 	this.Redirect("/admin/categories/", 302)
 }
 
-func (this *CategoriesController) EditWrite(){
-	categoryId, err:= this.GetInt(":id")
+func (this *CategoriesController) EditWrite() {
+	categoryId, err := this.GetInt(":id")
 	flash := beego.NewFlash()
 	if err != nil {
 		this.Abort("400")
@@ -90,7 +85,6 @@ func (this *CategoriesController) EditWrite(){
 	category := new(models.Category)
 
 	o := orm.NewOrm()
-
 
 	o.QueryTable("categories").Filter("id", categoryId).One(category)
 	if val := this.GetString("Title"); val != category.Title {
@@ -113,10 +107,9 @@ func (this *CategoriesController) EditWrite(){
 
 }
 
+func (this *CategoriesController) Delete() {
 
-func (this *CategoriesController) Delete(){
-
-	categoryId, err:= this.GetInt(":id")
+	categoryId, err := this.GetInt(":id")
 	flash := beego.NewFlash()
 	if err != nil {
 		this.Abort("400")
@@ -124,7 +117,7 @@ func (this *CategoriesController) Delete(){
 	o := orm.NewOrm()
 
 	category := new(models.Category)
-	o.QueryTable("posts").Filter("id", categoryId).One(category)
+	o.QueryTable("categories").Filter("id", categoryId).One(category)
 	if _, err = o.Delete(category); err == nil {
 		flash.Notice("Category erased")
 		flash.Store(&this.Controller)
@@ -133,6 +126,6 @@ func (this *CategoriesController) Delete(){
 		log.Println(err)
 		flash.Store(&this.Controller)
 	}
-	this.Redirect("/admin/", 302)
+	this.Redirect("/admin/categories", 302)
 	return
 }
