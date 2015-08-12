@@ -5,8 +5,7 @@ import (
 	"github.com/astaxie/beego/context"
 	_ "github.com/juanfgs/blog/models"
 	_ "github.com/juanfgs/blog/routers"
-	"github.com/russross/blackfriday"
-	"github.com/microcosm-cc/bluemonday"
+	"github.com/juanfgs/blog/helpers"
 )
 
 var sessionName = beego.AppConfig.String("SessionName")
@@ -21,9 +20,9 @@ func main() {
 	}
 
 	beego.AddFuncMap("equals", equals)
-	beego.AddFuncMap("renderPost", renderPost)
-	beego.AddFuncMap("renderSafeMarkDown", renderSafeMarkDown)
-	beego.AddFuncMap("renderMarkDown", renderMarkDown)			
+	beego.AddFuncMap("renderPost", helpers.renderPost)
+	beego.AddFuncMap("renderSafeMarkDown", helpers.renderSafeMarkDown)
+	beego.AddFuncMap("renderMarkDown", helpers.renderMarkDown)
 	beego.InsertFilter("/admin/", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/admin/*", beego.BeforeRouter, FilterUser)
 	beego.Run()
@@ -40,23 +39,4 @@ func equals(a interface{}, b interface{}) bool {
 	return false
 } 
 
-func renderMarkDown(input string) string {
-	
-	unsafe := blackfriday.MarkdownCommon([]byte(input))
-//	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
-	return string(unsafe)
-}
-func renderSafeMarkDown(input string) string {
-	
-	unsafe := blackfriday.MarkdownCommon([]byte(input))
-	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
-	return string(html)
-}
-func renderPost(content string, contentType string) string {
-	if contentType == "markdown" {
-		return renderMarkDown(content)
-	} else {
-		return content
-	}
-}
 
