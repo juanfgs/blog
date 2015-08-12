@@ -79,7 +79,7 @@ function deleteFile(file){
 
 function insertImage(file){
     var contentArea = document.getElementById("ContentArea");
-    var text = '![example '+file.Filename+'](/static/uploads/'+file.Filename+' )';
+    var text = '![fit-width](/static/uploads/'+file.Filename+' )';
     insertAtCursor(contentArea,text);
 }
 
