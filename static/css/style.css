@@ -27,8 +27,13 @@ h6 {
     font-family: 'Bree Serif', serif;
   font-weight: 800;
 }
+
+.intro-header .post-heading h1,
 .intro-header .site-heading h1 {
     font-size:48px;
+}
+.intro-header{
+    margin-bottom:0;
 }
 .intro-header .site-heading, .intro-header .post-heading, .intro-header .page-heading {
     padding-bottom:100px;
