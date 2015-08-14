@@ -20,9 +20,9 @@ func main() {
 	}
 
 	beego.AddFuncMap("equals", equals)
-	beego.AddFuncMap("renderPost", helpers.renderPost)
-	beego.AddFuncMap("renderSafeMarkDown", helpers.renderSafeMarkDown)
-	beego.AddFuncMap("renderMarkDown", helpers.renderMarkDown)
+	beego.AddFuncMap("renderPost", helpers.RenderPost)
+	beego.AddFuncMap("renderSafeMarkDown", helpers.RenderSafeMarkDown)
+	beego.AddFuncMap("renderMarkDown", helpers.RenderMarkDown)
 	beego.InsertFilter("/admin/", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/admin/*", beego.BeforeRouter, FilterUser)
 	beego.Run()

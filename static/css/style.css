@@ -7,8 +7,25 @@
     padding-bottom:2px;
 }
 body {
+    font-family: 'Crimson Text',  serif;
     font-size:18px;
 }
+.intro-header .site-heading .subheading,
+.navbar-custom {
+    font-family:'Lato', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Bree Serif', serif;
+  font-weight: 800;
+}
+
+
+
 #gopher{
     position:fixed;
     bottom:0;
