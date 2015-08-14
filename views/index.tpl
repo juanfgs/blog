@@ -22,7 +22,9 @@
 
     <!-- Custom CSS -->
     <link href="/static/css/clean-blog.min.css" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/prism.css" rel="stylesheet">	      
+      <link href="/static/css/style.css" rel="stylesheet">
+
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -148,7 +150,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
 
-
+    <script src="/static/js/prism.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/clean-blog.js"></script>
     <script>
