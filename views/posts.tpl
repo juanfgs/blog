@@ -27,10 +27,10 @@
 	  <p>
 
 	    {{ renderPost $post.Content $post.ContentType | str2html   }}
-	    <p>
-	    <a  href="/post/{{ $post.Id }}">Leer Más</a>
-	    <span class="badge">Comments : {{ len $post.Comments }}</span>	    
-	  </p>
+	    <div class="btn-group-sm" role="group">
+	      <a  class="btn  btn-default" href="/post/{{ $post.Id }}">Leer Más</a>
+	      <a class="btn  btn-primary" href="/post/{{ $post.Id }}"> {{ len $post.Comments }}</a>	    
+	    </div>
 	</p>
 
 	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>
