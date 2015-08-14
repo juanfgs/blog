@@ -6,12 +6,14 @@
     padding-top:2px;
     padding-bottom:2px;
 }
+.intro-header .post-heading .meta,
 body {
     font-family: 'Crimson Text',  serif;
     font-size:18px;
 }
 pre,
 pre code {font-family:'Inconsolata', monospace;}
+
 .intro-header .site-heading .subheading,
 .navbar-custom {
     font-family:'Lato', sans-serif;
@@ -25,7 +27,13 @@ h6 {
     font-family: 'Bree Serif', serif;
   font-weight: 800;
 }
-
+.intro-header .site-heading h1 {
+    font-size:48px;
+}
+.intro-header .site-heading, .intro-header .post-heading, .intro-header .page-heading {
+    padding-bottom:100px;
+    padding-top:100px;    
+}
 
 
 #gopher{
