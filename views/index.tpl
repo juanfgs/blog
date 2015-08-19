@@ -149,8 +149,25 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
+    
 
     <script src="/static/js/prism.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+  <script>
+        $(document).ready(function () {
+            $('script[type="text/katex"]').each(function () {
+                var math = $(this).text();
+                var span = document.createElement('span');
+                katex.render(math, span);
+                $(this).replaceWith(span);
+            })
+        });
+    </script>
+
+
+    
+
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/clean-blog.js"></script>
     <script>
