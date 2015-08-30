@@ -42,6 +42,8 @@ func init() {
 	beego.Router("/logout", &controllers.UsersController{}, "get:Logout")
 	beego.Router("/register/process", &controllers.UsersController{}, "post:RegisterPost")
 
+	beego.Router("/feed.xml", &controllers.FeedsController{}, "get:Index")
+	
 	//	beego.Router("/images/:height([0-9])x:width[0-9]/:image:string", &controllers.ThumbnailsController{}, "get:showImage")
 
 }
