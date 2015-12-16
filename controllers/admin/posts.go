@@ -16,7 +16,7 @@ type PostsController struct {
 
 func (this *PostsController) Index() {
 	this.Layout = "admin/index.tpl"
-
+	this.Data["Title"] = "Posts"
 	var posts []models.Post
 	o := orm.NewOrm()
 	postsPerPage := 10
@@ -30,7 +30,7 @@ func (this *PostsController) Index() {
 
 	this.Data["posts"] = posts
 
-	this.TplNames = "admin/dashboard.tpl"
+	this.TplNames = "admin/posts/index.tpl"
 }
 
 func (this *PostsController) Delete(){
@@ -77,7 +77,7 @@ func (this *PostsController) Edit(){
 	this.Data["Post"] = post
 
 	
-	this.TplNames = "admin/editpost.tpl"
+	this.TplNames = "admin/posts/edit.tpl"
 }
 
 func (this *PostsController) EditWrite(){
@@ -146,7 +146,7 @@ func (this *PostsController) New(){
 	var categories []models.Category 
 	o.QueryTable("categories").All(&categories)
 	this.Data["Categories"] = categories
-	this.TplNames = "admin/newpost.tpl"
+	this.TplNames = "admin/posts/new.tpl"
 }
 
 func (this *PostsController) NewWrite(){

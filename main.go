@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	"github.com/juanfgs/blog/helpers"
 	_ "github.com/juanfgs/blog/models"
 	_ "github.com/juanfgs/blog/routers"
-	"github.com/juanfgs/blog/helpers"
 )
 
 var sessionName = beego.AppConfig.String("SessionName")
@@ -29,14 +29,12 @@ func main() {
 }
 
 func equals(a interface{}, b interface{}) bool {
-	if a == nil || b == nil { 
+	if a == nil || b == nil {
 		return false
 	}
- 
+
 	if a == b {
 		return true
 	}
 	return false
-} 
-
-
+}
