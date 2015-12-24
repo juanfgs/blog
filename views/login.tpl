@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-        <div class="span12">
+        <div class="span8 col-md-8">
     		<div class="" id="loginModal">
               <div class="modal-header">
                 <h3>Have an Account?</h3>

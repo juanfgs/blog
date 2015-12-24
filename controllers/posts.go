@@ -44,7 +44,9 @@ func (this *PostsController) Show() {
 	this.Layout = "index.tpl"
 
 	id, err := this.GetInt(":id")
-	if err != nil {
+	slug := this.GetString(":slug")
+
+	if err != nil && slug == "" {
 		log.Println(id)
 		log.Println(err)
 		this.Abort("400")
@@ -53,7 +55,12 @@ func (this *PostsController) Show() {
 	var post models.Post
 
 	o := orm.NewOrm()
-	err = o.QueryTable("posts").Filter("id", id).One(&post)
+
+	if slug == "" {
+		err = o.QueryTable("posts").Filter("id", id).One(&post)
+	} else {
+		err = o.QueryTable("posts").Filter("slug", slug).One(&post)
+	}
 	_, err = o.LoadRelated(&post, "Author")
 
 	this.Data["Title"] = post.Title
