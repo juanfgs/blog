@@ -29,7 +29,7 @@ func (this *CommentsController) Index() {
 	o.QueryTable("comments").Limit(commentsPerPage, paginator.Offset()).OrderBy("-created_at").All(&comments)
 
 	this.Data["comments"] = comments
-	this.TplNames = "admin/comments.tpl"
+	this.TplNames = "admin/comments/index.tpl"
 }
 
 func (this *CommentsController) Delete(){

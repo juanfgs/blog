@@ -1,5 +1,5 @@
-<div class="col-lg-10 col-lg-offset-1">
-<form method="POST" >
+<div class="col-lg-12">
+<form method="POST">
   <div class="form-group">
     <label for="Title">Post Title</label>
     <input type="text" class="form-control required" id="Title" name="Title" placeholder="Enter Title">
@@ -9,7 +9,6 @@
     <input type="text" class="form-control" name="Tagline" id="Tagline" placeholder="Enter Tagline">
     </div>
     
-
     <div class="form-group">
       <label for="Content">Post Content</label>
       <textarea class="form-control required tinymce" id="ContentArea" name="Content" rows="15">	</textarea>

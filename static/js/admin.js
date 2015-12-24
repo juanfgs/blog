@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded",function(evt){
+
+    
     var formElement = document.getElementById("js-upload-form");
     var uploadedFiles = document.getElementById("js-upload-files");    
 
