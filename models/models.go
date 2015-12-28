@@ -15,6 +15,9 @@ func init(){
 	orm.RegisterModel(new(Post))
 	orm.RegisterModel(new(Comment))
 	orm.RegisterModel(new(Media))
+	orm.RegisterModel(new(Setting))
+	orm.RegisterModel(new(Page))
+	
 	dbpass := beego.AppConfig.String("dbpass")
 	dbuser := beego.AppConfig.String("dbuser")
 	dbhost := beego.AppConfig.String("dbhost")

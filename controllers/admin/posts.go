@@ -3,11 +3,11 @@ package admin
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/juanfgs/blog/models"
-	"github.com/juanfgs/blog/controllers"	
 	"github.com/astaxie/beego/utils/pagination"
-	"time"
+	"github.com/juanfgs/blog/controllers"
+	"github.com/juanfgs/blog/models"
 	"log"
+	"time"
 )
 
 type PostsController struct {
@@ -16,7 +16,7 @@ type PostsController struct {
 
 func (this *PostsController) Index() {
 	this.Layout = "admin/index.tpl"
-
+	this.Data["Title"] = "Posts"
 	var posts []models.Post
 	o := orm.NewOrm()
 	postsPerPage := 10
@@ -27,15 +27,14 @@ func (this *PostsController) Index() {
 	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, countPosts)
 	o.QueryTable("posts").Limit(postsPerPage, paginator.Offset()).OrderBy("-created_at").All(&posts)
 
-
 	this.Data["posts"] = posts
 
-	this.TplNames = "admin/dashboard.tpl"
+	this.TplNames = "admin/posts/index.tpl"
 }
 
-func (this *PostsController) Delete(){
+func (this *PostsController) Delete() {
 
-	postId, err:= this.GetInt(":id")
+	postId, err := this.GetInt(":id")
 	flash := beego.NewFlash()
 	if err != nil {
 		this.Abort("400")
@@ -57,9 +56,9 @@ func (this *PostsController) Delete(){
 
 }
 
-func (this *PostsController) Edit(){
+func (this *PostsController) Edit() {
 	this.Layout = "admin/index.tpl"
-	postId, err:= this.GetInt(":id")
+	postId, err := this.GetInt(":id")
 
 	if err != nil {
 		this.Abort("400")
@@ -68,20 +67,19 @@ func (this *PostsController) Edit(){
 
 	post := new(models.Post)
 
-	var categories []models.Category 
+	var categories []models.Category
 	o.QueryTable("categories").All(&categories)
 	this.Data["Categories"] = categories
 
 	o.QueryTable("posts").Filter("id", postId).One(post)
-	this.Data["Title"] = "Editing Post '"+ post.Title +"'"
+	this.Data["Title"] = "Editing Post '" + post.Title + "'"
 	this.Data["Post"] = post
 
-	
-	this.TplNames = "admin/editpost.tpl"
+	this.TplNames = "admin/posts/edit.tpl"
 }
 
-func (this *PostsController) EditWrite(){
-	postId, err:= this.GetInt(":id")
+func (this *PostsController) EditWrite() {
+	postId, err := this.GetInt(":id")
 	flash := beego.NewFlash()
 	if err != nil {
 		this.Abort("400")
@@ -90,7 +88,6 @@ func (this *PostsController) EditWrite(){
 	post := new(models.Post)
 
 	o := orm.NewOrm()
-
 
 	o.QueryTable("posts").Filter("id", postId).One(post)
 	if val := this.GetString("Title"); val != post.Title {
@@ -109,17 +106,21 @@ func (this *PostsController) EditWrite(){
 	if val := this.GetString("ContentType"); val != post.ContentType {
 		post.ContentType = val
 	}
-	
+
 	if val := this.GetString("Description"); val != post.Description {
 		post.Description = val
 	}
 
-	if val, err := this.GetInt("CategoryId"); err == nil {
-			var category models.Category
-			o.QueryTable("categories").Filter("id", val).One(&category)
-			post.Category = &category
+	if val := this.GetString("Slug"); val == "" {
+		post.Slug = string(models.GenerateSlug(post.Title))
 	}
-	
+
+	if val, err := this.GetInt("CategoryId"); err == nil {
+		var category models.Category
+		o.QueryTable("categories").Filter("id", val).One(&category)
+		post.Category = &category
+	}
+
 	published, errbool := this.GetBool("Published")
 	if errbool == nil {
 		post.Published = published
@@ -138,18 +139,17 @@ func (this *PostsController) EditWrite(){
 
 }
 
-
-func (this *PostsController) New(){
+func (this *PostsController) New() {
 	this.Layout = "admin/index.tpl"
 	this.Data["Title"] = "Create new post"
 	o := orm.NewOrm()
-	var categories []models.Category 
+	var categories []models.Category
 	o.QueryTable("categories").All(&categories)
 	this.Data["Categories"] = categories
-	this.TplNames = "admin/newpost.tpl"
+	this.TplNames = "admin/posts/new.tpl"
 }
 
-func (this *PostsController) NewWrite(){
+func (this *PostsController) NewWrite() {
 	flash := beego.NewFlash()
 	o := orm.NewOrm()
 
@@ -170,17 +170,21 @@ func (this *PostsController) NewWrite(){
 		post.ContentType = val
 	}
 
+	if val := this.GetString("Slug"); val == "" {
+
+		post.Slug = string(models.GenerateSlug(post.Title))
+	}
+	
 	if val, err := this.GetInt("CategoryId"); err == nil {
-			var category models.Category
-			o.QueryTable("categories").Filter("id", val).One(&category)
-			post.Category = &category
+		var category models.Category
+		o.QueryTable("categories").Filter("id", val).One(&category)
+		post.Category = &category
 	}
 	post.CreatedAt = time.Now()
 	post.UpdatedAt = time.Now()
 	if user, ok := this.Data["User"].(models.User); ok {
 		post.Author = &user
 	}
-
 
 	_, err := o.Insert(post)
 	if err != nil {

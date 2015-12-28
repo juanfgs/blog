@@ -1,24 +1,32 @@
-<div class="col-lg-10 col-lg-offset-1"> 
-     <ul class="list-group">
+<div class="col-lg-12 ">
+  <div class="row actions" role="">
+    <a href="/admin/posts/new" class="btn btn-sm btn-primary pull-right">New</a>
+  </div>
+     <div class="post-lists">
       {{ range $key, $post := .posts }}
+      <div class="media">
+	<div class="media-body">
+	  <a href="/admin/posts/edit/{{ $post.Id }}">
+	    <h2 class="post-title">
+	      {{ $post.Title }}
+	    </h2>
 
-      	  <li class="list-group-item">
-	<a href="/admin/post/edit/{{ $post.Id }}">
-	  <h2 class="post-title">
-	    {{ $post.Title }}
-	  </h2>
+	  </a>
+	  <p>	
+	    {{ str2html $post.Tagline }}
+	  </p>
+	</div>	  
+	  <div class="pull-right btn-group" role="group">
+	    <a href="/admin/posts/delete/{{ $post.Id }}" class="btn btn-sm btn-default">Delete</a>
+	    <a href="/admin/posts/edit/{{ $post.Id }}" class="btn btn-sm btn-default">Edit</a>	    
+	  </div>
+	  <p class="post-meta"><small>Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</small></p>
 
-	</a>
-		<p>	
-		    {{ str2html $post.Tagline }}
-	    	  </p>
-		  <a href="/admin/post/delete/{{ $post.Id }}" class="btn btn-primary">Delete post</a>
-	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>
-
+      </div>
       <hr>
-      </li> 
-      {{ end }}
-      </ul>
+
+	{{ end }}
+      </div>
 
 {{if .paginator.HasPages}}
 <ul class="pagination pagination">
