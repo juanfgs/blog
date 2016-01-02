@@ -14,7 +14,7 @@
     <meta name="keywords" content="Golang, Go, Blog, Laravel, PHP, MVC, Javascript, JSON, NoSQL, MongoDB, Web Developer">
     {{ end}}
     <meta name="author" content="Juan F. Giménez Silva">
-
+      <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="{{ .Title }}" />
     <title>{{ .Title }}</title>
 
     <!-- Bootstrap Core CSS -->
