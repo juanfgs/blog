@@ -34,7 +34,7 @@ func (this *PostsController) Index() {
 	}
 	this.Data["posts"] = posts
 
-	this.TplNames = "posts.tpl"
+	this.TplNames = "posts/index.tpl"
 
 }
 
@@ -74,7 +74,7 @@ func (this *PostsController) Show() {
 		log.Println(err)
 	}
 
-	this.TplNames = "post.tpl"
+	this.TplNames = "posts/view.tpl"
 }
 
 func (this *PostsController) Search(){
@@ -112,7 +112,7 @@ func (this *PostsController) Search(){
 
 	this.Data["posts"] = posts
 
-	this.TplNames = "posts.tpl"
+	this.TplNames = "posts/index.tpl"
 }
 
 func (this *PostsController) URLMapping() {

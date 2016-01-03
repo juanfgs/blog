@@ -52,7 +52,7 @@ func (this *CategoriesController) Show() {
 	if err == nil {
 		this.Data["posts"] = category.Posts
 	}
-	this.TplNames = "category.tpl"
+	this.TplNames = "categories/view.tpl"
 }
 
 func (this *CategoriesController) URLMapping() {
