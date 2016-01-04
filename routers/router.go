@@ -11,6 +11,9 @@ func init() {
 	beego.Router("/post/:id([0-9]+)", &controllers.PostsController{}, "get:Show")
 	beego.Router("/post/:slug([a-z-]+)", &controllers.PostsController{}, "get:Show")
 
+	beego.Router("/page/:id([0-9]+)", &controllers.PagesController{}, "get:Show")
+	beego.Router("/page/:slug([a-z-]+)", &controllers.PagesController{}, "get:Show")
+
 	beego.Router("/comment/new", &controllers.CommentsController{}, "post:CommentWrite")
 	beego.Router("/categories/:id([0-9]+)", &controllers.CategoriesController{}, "get:Show")
 

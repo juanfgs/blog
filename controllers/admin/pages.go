@@ -51,7 +51,7 @@ func (this *PagesController) Delete() {
 		log.Println(err)
 		flash.Store(&this.Controller)
 	}
-	this.Redirect("/admin/", 302)
+	this.Redirect("/admin/pages/", 302)
 	return
 
 }
@@ -126,7 +126,7 @@ func (this *PagesController) EditWrite() {
 	if _, err := o.Update(page); err == nil {
 		flash.Notice("Page Saved")
 		flash.Store(&this.Controller)
-		this.Redirect("/admin/", 302)
+		this.Redirect("/admin/pages/", 302)
 		return
 	} else {
 
@@ -184,5 +184,5 @@ func (this *PagesController) NewWrite() {
 	}
 	flash.Notice("Page Created")
 	flash.Store(&this.Controller)
-	this.Redirect("/admin/", 302)
+	this.Redirect("/admin/pages/", 302)
 }
