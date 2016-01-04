@@ -14,7 +14,7 @@ func (this *MainController) Prepare(){
 	_ = beego.ReadFromRequest(&this.Controller)
 	var sessionName = beego.AppConfig.String("SessionName")
 	v := this.GetSession(sessionName)
-	
+
 	if v != nil { //user logged in
 		user, err:= models.NewUser(v.(int))
 		if err != nil {
@@ -26,7 +26,12 @@ func (this *MainController) Prepare(){
 	o := orm.NewOrm()
 	var categories []models.Category
 	o.QueryTable("categories").All(&categories)
+
+	var pages []models.Page
+	o.QueryTable("pages").All(&pages)
+
 	this.Data["Categories"] = &categories
+	this.Data["Pages"] = &pages
 
 
 

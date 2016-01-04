@@ -61,7 +61,15 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 
+                  <li class="dropdown">
+		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages <span class="caret"></span></a>
+		      <ul class="dropdown-menu" role="menu">
+			{{ range $key, $page :=  .Pages}}
+			<li><a href="/page/{{ $page.Slug }}">{{ $page.Title }}</a></li>
+			{{ end }}
+		      </ul>
 
+                    </li>
 
                     <li class="dropdown">
 		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
