@@ -42,4 +42,5 @@ func init() {
 
 	// Settings route
 	beego.Router("/admin/settings/", &admin.SettingsController{}, "get:Index")
+	beego.Router("/admin/settings/save", &admin.SettingsController{}, "post:Save")	
 }

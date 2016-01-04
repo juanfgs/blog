@@ -22,10 +22,11 @@
     SEO Info
   </a>
 
-    <select form-control name="ContentType">
-      <option value="markdown" selected="selected">Markdown</option>
-      <option value="HTML">HTML</option>
-      <option value="text">Plain Text </option>            
+  <select form-control name="ContentType">
+    
+      <option value="markdown" {{if .DefaultFormatMarkdown }} selected="selected" {{ end }} >Markdown</option>
+      <option value="HTML" {{if .DefaultFormatHtml }} selected="selected" {{ end }} >HTML</option>
+      <option value="text"  {{if .DefaultFormatPlainText }} selected="selected" {{ end }}>Plain Text </option>            
     </select>
   </div>
 

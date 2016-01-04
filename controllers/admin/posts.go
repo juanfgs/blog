@@ -143,6 +143,19 @@ func (this *PostsController) New() {
 	this.Layout = "admin/index.tpl"
 	this.Data["Title"] = "Create new post"
 	o := orm.NewOrm()
+
+	if format, err := models.GetSetting("PostsDefaultFormat"); err == nil {
+		switch format.Value {
+		case "markdown":
+			this.Data["DefaultFormatMarkdown"] = 1
+		case "html":
+			this.Data["DefaultFormatHtml"] = 1
+		case "plain":
+			this.Data["DefaultFormatPlainText"] = 1
+		}
+
+	}
+
 	var categories []models.Category
 	o.QueryTable("categories").All(&categories)
 	this.Data["Categories"] = categories
