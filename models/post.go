@@ -1,8 +1,10 @@
 package models
 
 import (
-	"bytes"
+	"regexp"
+	"strings"
 	"time"
+	"log"
 )
 
 type Post struct {
@@ -28,6 +30,11 @@ func (this *Post) TableName() string {
 }
 
 func GenerateSlug(title string) []byte {
-	return bytes.ToLower(bytes.Replace([]byte(title), []byte(" "), []byte("-"), -1))
+	reg, err := regexp.Compile("[^A-Za-z0-9]+")
+	if err != nil {
+		log.Fatal(err)
+	}
+	safe := reg.ReplaceAllString(title, "-")
+	return []byte(strings.ToLower(strings.Trim(safe, "-")))
 
 }
