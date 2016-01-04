@@ -2,6 +2,7 @@ appname = blog
 httpport = 8080
 runmode = prod
 postsperpage = 10
+
 dbpass = <database password>
 dbuser = <database user>
 dbname = <database name>
@@ -16,3 +17,4 @@ SingleUser = yes
 recaptchaKey = <place recaptcha key here>
 
 uploads_dir = static/uploads/
+
