@@ -42,19 +42,11 @@
       <label for="Description">SEO Description</label>
       <textarea class="form-control required" name="Description">	</textarea>
   </div>
-</div>
-  <div class="form-group">
-      <label for="Category">Category</label>
-      <select class="form-control" name="category_id">
-      {{ range $key, $category := .Categories}}
-      <option value="{{ $category.Id}}">{{ $category.Title}} </option>
-      {{ end }}
-      </select>
- </div>
+  </div>
   <div class="form-group">
       <label for="Published">Published</label>
       <input type="checkbox" value="1" name="Published"/>
-</div>
+  </div>
 
 
   <button type="submit" class="btn btn-default">Submit</button>

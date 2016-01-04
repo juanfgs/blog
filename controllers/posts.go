@@ -15,9 +15,21 @@ type PostsController struct {
 
 func (this *PostsController) Index() {
 	this.Layout = "index.tpl"
-	this.Data["Title"] = "Juan Giménez Silva's Blog"
-	this.Data["HeroTitle"] = "Bienvenidos a mi blog"
-	this.Data["HeroTagline"] = "Compartiendo un poco de lo que no sé"
+
+	if title, err := models.GetSetting("Title"); err == nil {
+		this.Data["Title"] = title.Value
+	}
+	if mainTitle, err := models.GetSetting("MainTitle"); err == nil {
+		this.Data["MainTitle"] = mainTitle.Value
+	}
+	if secondaryTitle, err := models.GetSetting("SecondaryTitle"); err == nil {
+		this.Data["SecondaryTitle"] = secondaryTitle.Value
+	}
+
+	if prettyUrls, err := models.GetSetting("EnablePrettyUrls"); err == nil {
+		this.Data["PrettyUrls"] = prettyUrls.Value
+	}
+
 	var posts []models.Post
 	o := orm.NewOrm()
 	postsPerPage, err := beego.AppConfig.Int("postsperpage")
@@ -34,7 +46,7 @@ func (this *PostsController) Index() {
 	}
 	this.Data["posts"] = posts
 
-	this.TplNames = "posts.tpl"
+	this.TplNames = "posts/index.tpl"
 
 }
 
@@ -64,8 +76,11 @@ func (this *PostsController) Show() {
 	_, err = o.LoadRelated(&post, "Author")
 
 	this.Data["Title"] = post.Title
-	this.Data["HeroTagline"] = "Mostly programming stuff, but also my life"
+	this.Data["SecondaryTitle"] = post.Tagline
 	this.Data["Post"] = post
+	if enabled, err := models.GetSetting("EnableComments"); err == nil {
+		this.Data["EnableComments"] = enabled.Value
+	}
 
 	_, err = o.LoadRelated(&post, "Comments")
 	if err == nil {
@@ -74,7 +89,7 @@ func (this *PostsController) Show() {
 		log.Println(err)
 	}
 
-	this.TplNames = "post.tpl"
+	this.TplNames = "posts/view.tpl"
 }
 
 func (this *PostsController) Search(){
@@ -94,7 +109,7 @@ func (this *PostsController) Search(){
 
 	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, countPosts)
 	this.Data["Title"] = "Search:" + keyword
-	this.Data["HeroTitle"] = "Search:" + keyword
+	this.Data["MainTitle"] = "Search:" + keyword
 
 	keyword = "%"+keyword+"%"
 
@@ -112,7 +127,7 @@ func (this *PostsController) Search(){
 
 	this.Data["posts"] = posts
 
-	this.TplNames = "posts.tpl"
+	this.TplNames = "posts/index.tpl"
 }
 
 func (this *PostsController) URLMapping() {

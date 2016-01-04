@@ -13,14 +13,14 @@ func init() {
 	beego.Router("/admin/posts/edit/:id([0-9]+)", &admin.PostsController{}, "get:Edit")
 	beego.Router("/admin/posts/edit/:id([0-9]+)", &admin.PostsController{}, "post:EditWrite")
 	beego.Router("/admin/posts/delete/:id([0-9]+)", &admin.PostsController{}, "get:Delete")
-	
+
 	// Pages
 	beego.Router("/admin/pages", &admin.PagesController{}, "get:Index")
 	beego.Router("/admin/pages/new", &admin.PagesController{}, "get:New")
 	beego.Router("/admin/pages/new", &admin.PagesController{}, "post:NewWrite")
 	beego.Router("/admin/pages/edit/:id([0-9]+)", &admin.PagesController{}, "get:Edit")
 	beego.Router("/admin/pages/edit/:id([0-9]+)", &admin.PagesController{}, "post:EditWrite")
-	beego.Router("/admin/pages/delete/:id([0-9]+)", &admin.PagesController{}, "get:Delete")	
+	beego.Router("/admin/pages/delete/:id([0-9]+)", &admin.PagesController{}, "get:Delete")
 
 	//Media routes
 	beego.Router("/admin/media/create", &admin.MediaController{}, "post:Create")
@@ -37,7 +37,10 @@ func init() {
 
 	beego.Router("/admin/comments/", &admin.CommentsController{}, "get:Index")
 	beego.Router("/admin/comments/delete/:id([0-9]+)", &admin.CommentsController{}, "get:Delete")
+	beego.Router("/admin/comments/edit/:id([0-9]+)", &admin.CommentsController{}, "get:Edit")
+	beego.Router("/admin/comments/edit/:id([0-9]+)", &admin.CommentsController{}, "post:EditWrite")
 
 	// Settings route
 	beego.Router("/admin/settings/", &admin.SettingsController{}, "get:Index")
+	beego.Router("/admin/settings/save", &admin.SettingsController{}, "post:Save")	
 }

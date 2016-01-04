@@ -39,3 +39,43 @@ func (this *FeedsController) Index() {
 
 	this.ServeXml()
 }
+
+
+func (this *FeedsController) Category() {
+
+	id, err := this.GetInt(":id")
+	if err != nil {
+		log.Println(id)
+		log.Println(err)
+		this.Abort("400")
+	}
+
+	var category models.Category
+
+	o := orm.NewOrm()
+
+	err = o.QueryTable("categories").Filter("id", id).One(&category)
+
+	if err != nil {
+		this.Abort("404")
+	}
+
+
+
+	_, err = o.LoadRelated(&category, "Posts",0, 20 , 0, "-created_at")
+
+	channel := rss.NewChannel("Juan Giménez Silva Posts", "/feeds.xml", "Feed of posts for " + category.Title)
+
+	for _, post := range category.Posts {
+		postContent := helpers.RenderPost(post.Content, post.ContentType)
+		channel.Add(  post.Title, fmt.Sprintf("/posts/view/%d", post.Id), postContent  )
+	}
+
+
+	content := channel.Marshal()
+	this.Ctx.Output.Body( []byte(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0">`  + string(content) + `</rss>` ) )
+
+	this.ServeXml()
+
+
+}

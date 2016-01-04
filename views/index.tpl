@@ -14,7 +14,7 @@
     <meta name="keywords" content="Golang, Go, Blog, Laravel, PHP, MVC, Javascript, JSON, NoSQL, MongoDB, Web Developer">
     {{ end}}
     <meta name="author" content="Juan F. Giménez Silva">
-
+      <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="{{ .Title }}" />
     <title>{{ .Title }}</title>
 
     <!-- Bootstrap Core CSS -->
@@ -52,15 +52,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Juan F. Giménez Silva</a>
+
+                <a href="/" class="navbar-brand">Home</a>
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
+
 
 
                     <li class="dropdown">
