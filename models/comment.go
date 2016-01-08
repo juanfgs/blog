@@ -7,8 +7,10 @@ import (
 type Comment struct {
 	Id int
 	Commenter string `orm:"size(100)"`
+	Email string `orm:"size(100)"`
 	Comment string `orm:"type(text)"`
 	Post *Post `orm:"rel(fk);null"`
+	Parent *Comment `orm:"rel(fk);null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

@@ -29,6 +29,10 @@ func (this *CommentsController) Index() {
 
 	o.QueryTable("comments").Limit(commentsPerPage, paginator.Offset()).OrderBy("-created_at").All(&comments)
 
+	for idx,_ := range comments {
+		_, err = o.LoadRelated(&comments[idx], "Post")
+	}
+
 	this.Data["Title"] = "Listing comments"
 	this.Data["comments"] = comments
 	this.TplNames = "admin/comments/index.tpl"

@@ -43,9 +43,10 @@
 		      <div  class="form-group">
                             <textarea class="form-control" name="comment"rows="3"></textarea>
 		      </div>
+		      <input type="submit" class="btn btn-sm btn-primary pull-right" value="Save" />		      
 		      <div class="g-recaptcha" data-sitekey="6LcBH_oSAAAAAPCKHLRUVglylkLo2xQ_bOycnYow"></div>
 		      <input type="hidden" value="{{ .Post.Id }}" name="post_id" />
-                        <input type="submit" class="btn btn-primary" value="Save" />
+                      
                     </form>
                 </div>
 
@@ -62,6 +63,7 @@
                             <small>{{ $comment.CreatedAt}}</small>
                         </h4>
 			{{ renderSafeMarkDown $comment.Comment | str2html }}
+			<a href="#"  class=" btn btn-sm btn-default reply" data-id="{{ $comment.Id }}">Reply</a>
                     </div>
                 </div>
 		{{ end }}
@@ -70,3 +72,5 @@
       </div>
     </div>
 {{ end }}
+
+<script src="/static/js/comment.js"></script>

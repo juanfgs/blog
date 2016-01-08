@@ -1,35 +1,34 @@
-package controllers 
+package controllers
 
 import (
+	"bytes"
+	"encoding/json"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/juanfgs/blog/models"
-	"time"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
-	"bytes"
-	"encoding/json"
-	"io/ioutil"
 	"strconv"
+	"time"
 )
-
 
 type CommentsController struct {
 	MainController
 }
 
-type ReCaptchaResponse struct{
-	Success bool `json:"success"`
+type ReCaptchaResponse struct {
+	Success    bool     `json:"success"`
 	ErrorCodes []string `json:"error-codes"`
 }
 
-func (this *CommentsController) CommentWrite(){
+func (this *CommentsController) CommentWrite() {
 	var postid int
 	var err error
 	flash := beego.NewFlash()
 	o := orm.NewOrm()
-	
+
 	comment := new(models.Comment)
 	comment.Commenter = this.GetString("commenter")
 	comment.Comment = this.GetString("comment")
@@ -42,7 +41,7 @@ func (this *CommentsController) CommentWrite(){
 	client := &http.Client{}
 	var req *http.Request
 	var res *http.Response
-	req, err = http.NewRequest("POST","https://www.google.com/recaptcha/api/siteverify", bytes.NewBufferString(recaptchaData.Encode()))
+	req, err = http.NewRequest("POST", "https://www.google.com/recaptcha/api/siteverify", bytes.NewBufferString(recaptchaData.Encode()))
 	req.Header.Add("Authorization", "auth_token=\"XXXXXXX\"")
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("Content-Length", strconv.Itoa(len(recaptchaData.Encode())))
@@ -50,27 +49,26 @@ func (this *CommentsController) CommentWrite(){
 	var jsonbytes []byte
 	jsonbytes, err = ioutil.ReadAll(res.Body)
 	var recaptcharesponse ReCaptchaResponse
-	err = json.Unmarshal(jsonbytes,&recaptcharesponse)
+	err = json.Unmarshal(jsonbytes, &recaptcharesponse)
 	if err != nil {
 		log.Println(err)
 	}
 
 	if recaptcharesponse.Success {
-		
 
-		if postid, err = this.GetInt("post_id"); err == nil{
+		if postid, err = this.GetInt("post_id"); err == nil {
 			var post models.Post
 			o.QueryTable("posts").Filter("id", postid).One(&post)
 			comment.Post = &post
 		}
 		comment.CreatedAt = time.Now()
 		comment.UpdatedAt = time.Now()
-		_,err = o.Insert(comment)
+		_, err = o.Insert(comment)
 		if err != nil {
 			log.Println(err)
 			flash.Error("Error inserting Comment")
 			flash.Store(&this.Controller)
-			return 
+			return
 		}
 
 		flash.Notice("Comment Added")
