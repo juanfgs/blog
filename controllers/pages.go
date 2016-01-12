@@ -1,17 +1,14 @@
 package controllers
 
 import (
-
 	"github.com/astaxie/beego/orm"
 	"github.com/juanfgs/blog/models"
-
 	"log"
 )
 
 type PagesController struct {
 	MainController
 }
-
 
 // @router /page/:id [get]
 func (this *PagesController) Show() {
@@ -26,7 +23,7 @@ func (this *PagesController) Show() {
 		this.Abort("400")
 	}
 
-	var  page models.Page
+	var page models.Page
 
 	o := orm.NewOrm()
 
@@ -40,12 +37,10 @@ func (this *PagesController) Show() {
 
 	this.Data["Page"] = page
 
-
 	this.TplNames = "pages/view.tpl"
 }
 
 func (this *PagesController) URLMapping() {
 	this.Mapping("Show", this.Show)
-
 
 }

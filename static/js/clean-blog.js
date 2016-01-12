@@ -7,7 +7,31 @@
 // Contact Form Scripts
 
 $(function() {
+    $('.media').each(function(){
+	var parentId = $(this).attr("data-parent-id");
 
+
+	if( parentId) {
+
+	    var mediaItem = $(this).detach();
+	    $(this).addClass("child");
+
+	    $("[data-comment-id="+parentId+"]").append(mediaItem);
+	}
+    });
+    
+    
+    $(".reply").click(function(){
+	var parentId = $(this).attr('data-id');
+	$('#commentId').val(parentId);
+    });
+
+    $('#sendComment').click(function(){
+	$('#commentBox form').submit();
+    });
+
+
+    
     $('a[href="#search"]').on('click', function(event) {
 
         $('#search').addClass('open');

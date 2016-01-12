@@ -1,12 +1,12 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/juanfgs/blog/models"
 	"github.com/astaxie/beego/utils/pagination"
+	"github.com/juanfgs/blog/models"
 	"log"
-	"fmt"
 )
 
 type PostsController struct {
@@ -41,7 +41,7 @@ func (this *PostsController) Index() {
 	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, countPosts)
 
 	o.QueryTable("posts").Filter("published", 1).Limit(postsPerPage, paginator.Offset()).OrderBy("-created_at").All(&posts)
-	for idx,_ := range posts {
+	for idx, _ := range posts {
 		_, err = o.LoadRelated(&posts[idx], "Comments")
 	}
 	this.Data["posts"] = posts
@@ -49,7 +49,6 @@ func (this *PostsController) Index() {
 	this.TplNames = "posts/index.tpl"
 
 }
-
 
 // @router /post/:id [get]
 func (this *PostsController) Show() {
@@ -83,7 +82,12 @@ func (this *PostsController) Show() {
 	}
 
 	_, err = o.LoadRelated(&post, "Comments")
+
 	if err == nil {
+		for idx, _ := range post.Comments {
+			_, err = o.LoadRelated(post.Comments[idx], "Parent")
+		}
+
 		this.Data["Comments"] = post.Comments
 	} else {
 		log.Println(err)
@@ -92,7 +96,7 @@ func (this *PostsController) Show() {
 	this.TplNames = "posts/view.tpl"
 }
 
-func (this *PostsController) Search(){
+func (this *PostsController) Search() {
 	this.Layout = "index.tpl"
 	keyword := this.GetString("keyword")
 	var posts []models.Post
@@ -111,17 +115,15 @@ func (this *PostsController) Search(){
 	this.Data["Title"] = "Search:" + keyword
 	this.Data["MainTitle"] = "Search:" + keyword
 
-	keyword = "%"+keyword+"%"
+	keyword = "%" + keyword + "%"
 
+	num, err := o.Raw("SELECT * FROM `posts` WHERE published = 1 AND (title LIKE ? OR content LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ? ", keyword, keyword, postsPerPage, paginator.Offset()).QueryRows(&posts)
 
-	num, err := o.Raw("SELECT * FROM `posts` WHERE published = 1 AND (title LIKE ? OR content LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ? ", keyword,keyword,postsPerPage,paginator.Offset()).QueryRows(&posts)
-
-
-	this.Data["HeroTagline"] = fmt.Sprintf( "Entries: %d", num)
+	this.Data["HeroTagline"] = fmt.Sprintf("Entries: %d", num)
 	if err != nil {
 		log.Println(err)
 	}
-	for idx,_ := range posts {
+	for idx, _ := range posts {
 		_, err = o.LoadRelated(&posts[idx], "Comments")
 	}
 

@@ -125,3 +125,11 @@ h2{ font-weight:regular; font-size:24px; }
 img[alt="fit-width"] {
     width:750px;
 }
+
+.media.child {
+    padding-left:60px;
+}
+.media p {
+    margin-top:10px;
+    margin-bottom:10px;    
+}

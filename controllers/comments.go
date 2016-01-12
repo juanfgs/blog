@@ -32,6 +32,12 @@ func (this *CommentsController) CommentWrite() {
 	comment := new(models.Comment)
 	comment.Commenter = this.GetString("commenter")
 	comment.Comment = this.GetString("comment")
+	if id, err := this.GetInt("parent_id"); err == nil {
+		var parent models.Comment
+		o.QueryTable("comments").Filter("id", id).One(&parent)
+		comment.Parent = &parent
+	}
+
 	var recaptcha_response = this.GetString("g-recaptcha-response")
 	recaptchaKey := beego.AppConfig.String("recaptchaKey")
 
@@ -63,6 +69,7 @@ func (this *CommentsController) CommentWrite() {
 		}
 		comment.CreatedAt = time.Now()
 		comment.UpdatedAt = time.Now()
+
 		_, err = o.Insert(comment)
 		if err != nil {
 			log.Println(err)
