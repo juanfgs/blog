@@ -31,6 +31,7 @@ func (this *PostsController) Index() {
 	}
 
 	var posts []models.Post
+
 	o := orm.NewOrm()
 	postsPerPage, err := beego.AppConfig.Int("postsperpage")
 	countPosts, err := o.QueryTable("posts").Filter("published", 1).Count()
@@ -99,6 +100,12 @@ func (this *PostsController) Show() {
 func (this *PostsController) Search() {
 	this.Layout = "index.tpl"
 	keyword := this.GetString("keyword")
+	imNotAHuman := this.GetString("imnotahuman")
+
+	if imNotAHuman != "" {
+		this.Abort("404")
+	}
+
 	var posts []models.Post
 
 	o := orm.NewOrm()

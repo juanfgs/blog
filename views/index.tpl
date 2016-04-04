@@ -111,6 +111,7 @@
       <button type="button" class="close">×</button>
       <form action="/search/" method="GET">
         <input type="search" value="" name="keyword" placeholder="type keyword(s) here" />
+        <input type="text" value="" name="imnotahuman" style="display:none;" />	
         <input type="submit" class="btn btn-primary" value="Search">
       </form>
     </div>
