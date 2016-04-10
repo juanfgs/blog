@@ -1,3 +1,5 @@
+![travis](https://travis-ci.org/juanfgs/blog.svg?branch=master)
+
 blog
 ====
 
