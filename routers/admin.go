@@ -13,7 +13,7 @@ func init() {
 	beego.Router("/admin/posts/edit/:id([0-9]+)", &admin.PostsController{}, "get:Edit")
 	beego.Router("/admin/posts/edit/:id([0-9]+)", &admin.PostsController{}, "post:EditWrite")
 	beego.Router("/admin/posts/delete/:id([0-9]+)", &admin.PostsController{}, "get:Delete")
-
+	beego.Router("/admin/posts/export", &admin.PostsController{}, "get:Export")
 	// Pages
 	beego.Router("/admin/pages", &admin.PagesController{}, "get:Index")
 	beego.Router("/admin/pages/new", &admin.PagesController{}, "get:New")

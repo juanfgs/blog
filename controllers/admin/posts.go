@@ -1,11 +1,14 @@
 package admin
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/utils/pagination"
 	"github.com/juanfgs/blog/controllers"
 	"github.com/juanfgs/blog/models"
+	"github.com/lunny/html2md"
+	"io/ioutil"
 	"log"
 	"time"
 )
@@ -187,7 +190,7 @@ func (this *PostsController) NewWrite() {
 
 		post.Slug = string(models.GenerateSlug(post.Title))
 	}
-	
+
 	if val, err := this.GetInt("CategoryId"); err == nil {
 		var category models.Category
 		o.QueryTable("categories").Filter("id", val).One(&category)
@@ -210,4 +213,27 @@ func (this *PostsController) NewWrite() {
 	flash.Notice("Post Created")
 	flash.Store(&this.Controller)
 	this.Redirect("/admin/", 302)
+}
+
+func (this *PostsController) Export() {
+	var posts []models.Post
+	o := orm.NewOrm()
+	o.QueryTable("posts").All(&posts)
+	for _, post := range posts {
+		var filename string = fmt.Sprintf("exports/%s%s%s", post.CreatedAt, post.Title, ".md")
+		var postContent string
+
+		if post.ContentType == "HTML" {
+			postContent = html2md.Convert(post.Content)
+		} else {
+			postContent = fmt.Sprintf("%s", post.Content)
+		}
+
+		if err := ioutil.WriteFile(filename, []byte(postContent), 0644); err != nil {
+			panic(err)
+		}
+
+	}
+	this.Redirect("/admin/posts/", 302)
+
 }
