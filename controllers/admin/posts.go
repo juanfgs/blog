@@ -216,6 +216,7 @@ func (this *PostsController) NewWrite() {
 }
 
 func (this *PostsController) Export() {
+	flash := beego.NewFlash()
 	var posts []models.Post
 	o := orm.NewOrm()
 	o.QueryTable("posts").All(&posts)
@@ -232,8 +233,8 @@ func (this *PostsController) Export() {
 		if err := ioutil.WriteFile(filename, []byte(postContent), 0644); err != nil {
 			panic(err)
 		}
-
 	}
+	flash.Notice("Posts exported as markdown, check the ./exports/ folder")
 	this.Redirect("/admin/posts/", 302)
 
 }
