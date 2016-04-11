@@ -8,6 +8,7 @@ import (
 	"github.com/juanfgs/blog/controllers"
 	"github.com/juanfgs/blog/models"
 	"github.com/lunny/html2md"
+	"strings"
 	"io/ioutil"
 	"log"
 	"time"
@@ -211,6 +212,7 @@ func (this *PostsController) NewWrite() {
 		return
 	}
 	flash.Notice("Post Created")
+
 	flash.Store(&this.Controller)
 	this.Redirect("/admin/", 302)
 }
@@ -221,20 +223,22 @@ func (this *PostsController) Export() {
 	o := orm.NewOrm()
 	o.QueryTable("posts").All(&posts)
 	for _, post := range posts {
-		var filename string = fmt.Sprintf("exports/%s%s%s", post.CreatedAt, post.Title, ".md")
+		var filename string = fmt.Sprintf("exports/%d-%s%s", post.Id, strings.Replace(post.Title, "/", "-", -1), ".md")
 		var postContent string
+		var postInfo string  = fmt.Sprintf("+++\ntitle = \"%s\"\ntagline = \"%s\" \ndate = \"%s\"\ndescription = \"%s\"\nkeywords = \"%s\"\n+++ ", post.Title, post.Tagline, post.CreatedAt, post.Description, post.Keywords )
 
 		if post.ContentType == "HTML" {
 			postContent = html2md.Convert(post.Content)
 		} else {
 			postContent = fmt.Sprintf("%s", post.Content)
 		}
-
+		postContent = fmt.Sprintf("%s\n%s", postInfo, postContent)
 		if err := ioutil.WriteFile(filename, []byte(postContent), 0644); err != nil {
 			panic(err)
 		}
 	}
 	flash.Notice("Posts exported as markdown, check the ./exports/ folder")
+	flash.Store(&this.Controller)
 	this.Redirect("/admin/posts/", 302)
 
 }
