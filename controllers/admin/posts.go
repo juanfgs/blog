@@ -33,7 +33,7 @@ func (this *PostsController) Index() {
 
 	this.Data["posts"] = posts
 
-	this.TplNames = "admin/posts/index.tpl"
+	this.TplName = "admin/posts/index.tpl"
 }
 
 func (this *PostsController) Delete() {
@@ -79,7 +79,7 @@ func (this *PostsController) Edit() {
 	this.Data["Title"] = "Editing Post '" + post.Title + "'"
 	this.Data["Post"] = post
 
-	this.TplNames = "admin/posts/edit.tpl"
+	this.TplName = "admin/posts/edit.tpl"
 }
 
 func (this *PostsController) EditWrite() {
@@ -163,7 +163,7 @@ func (this *PostsController) New() {
 	var categories []models.Category
 	o.QueryTable("categories").All(&categories)
 	this.Data["Categories"] = categories
-	this.TplNames = "admin/posts/new.tpl"
+	this.TplName = "admin/posts/new.tpl"
 }
 
 func (this *PostsController) NewWrite() {

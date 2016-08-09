@@ -37,7 +37,7 @@ func (this *PagesController) Show() {
 
 	this.Data["Page"] = page
 
-	this.TplNames = "pages/view.tpl"
+	this.TplName = "pages/view.tpl"
 }
 
 func (this *PagesController) URLMapping() {

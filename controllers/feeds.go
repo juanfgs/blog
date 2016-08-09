@@ -37,7 +37,7 @@ func (this *FeedsController) Index() {
 	content := channel.Marshal()
 	this.Ctx.Output.Body( []byte(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0">`  + string(content) + `</rss>` ) )
 
-	this.ServeXml()
+	this.ServeXML()
 }
 
 
@@ -75,7 +75,7 @@ func (this *FeedsController) Category() {
 	content := channel.Marshal()
 	this.Ctx.Output.Body( []byte(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0">`  + string(content) + `</rss>` ) )
 
-	this.ServeXml()
+	this.ServeXML()
 
 
 }

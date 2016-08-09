@@ -28,13 +28,13 @@ func (this *CategoriesController) Index() {
 
 	this.Data["Categories"] = categories
 
-	this.TplNames = "admin/categories/index.tpl"
+	this.TplName = "admin/categories/index.tpl"
 }
 
 func (this *CategoriesController) New() {
 	this.Layout = "admin/index.tpl"
 	this.Data["Title"] = "Create new category"
-	this.TplNames = "admin/categories/new.tpl"
+	this.TplName = "admin/categories/new.tpl"
 }
 
 func (this *CategoriesController) Edit() {
@@ -51,7 +51,7 @@ func (this *CategoriesController) Edit() {
 	o.QueryTable("categories").Filter("id", categoryId).One(category)
 	this.Data["Title"] = "Editing Category '" + category.Title + "'"
 	this.Data["Category"] = category
-	this.TplNames = "admin/categories/edit.tpl"
+	this.TplName = "admin/categories/edit.tpl"
 }
 
 func (this *CategoriesController) NewWrite() {

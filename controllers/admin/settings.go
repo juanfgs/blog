@@ -23,7 +23,7 @@ func (this *SettingsController) Index() {
 	this.Data["Title"] = "Website Settings"
 	this.Data["Settings"] = settings
 
-	this.TplNames = "admin/settings.tpl"
+	this.TplName = "admin/settings.tpl"
 }
 
 func (this *SettingsController) Save(){

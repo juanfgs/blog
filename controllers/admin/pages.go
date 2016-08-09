@@ -29,7 +29,7 @@ func (this *PagesController) Index() {
 
 	this.Data["pages"] = pages
 
-	this.TplNames = "admin/pages/index.tpl"
+	this.TplName = "admin/pages/index.tpl"
 }
 
 func (this *PagesController) Delete() {
@@ -75,7 +75,7 @@ func (this *PagesController) Edit() {
 	this.Data["Title"] = "Editing Page '" + page.Title + "'"
 	this.Data["Page"] = page
 
-	this.TplNames = "admin/pages/edit.tpl"
+	this.TplName = "admin/pages/edit.tpl"
 }
 
 func (this *PagesController) EditWrite() {
@@ -142,7 +142,7 @@ func (this *PagesController) New() {
 	var categories []models.Category
 	o.QueryTable("categories").All(&categories)
 	this.Data["Categories"] = categories
-	this.TplNames = "admin/pages/new.tpl"
+	this.TplName = "admin/pages/new.tpl"
 }
 
 func (this *PagesController) NewWrite() {

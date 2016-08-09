@@ -35,7 +35,7 @@ func (this *CommentsController) Index() {
 
 	this.Data["Title"] = "Listing comments"
 	this.Data["comments"] = comments
-	this.TplNames = "admin/comments/index.tpl"
+	this.TplName = "admin/comments/index.tpl"
 }
 
 func (this *CommentsController) Delete(){
@@ -78,7 +78,7 @@ func (this *CommentsController) Edit() {
 	this.Data["Commenter"] = comment.Commenter
 	this.Data["Comment"] = comment.Comment
 
-	this.TplNames = "admin/comments/edit.tpl"
+	this.TplName = "admin/comments/edit.tpl"
 }
 
 func (this *CommentsController) EditWrite() {

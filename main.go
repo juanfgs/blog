@@ -14,7 +14,7 @@ func main() {
 
 	var FilterUser = func(ctx *context.Context) {
 		_, ok := ctx.Input.Session(sessionName).(int)
-		if !ok && ctx.Input.Uri() != "/login" && ctx.Input.Uri() != "/register" {
+		if !ok && ctx.Input.URI() != "/login" && ctx.Input.URI() != "/register" {
 			ctx.Redirect(302, "/login")
 		}
 	}
@@ -38,3 +38,5 @@ func equals(a interface{}, b interface{}) bool {
 	}
 	return false
 }
+
+

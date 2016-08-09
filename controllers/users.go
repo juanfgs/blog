@@ -15,7 +15,7 @@ type UsersController struct {
 func (this *UsersController) Login() {
 	this.Layout = "admin/index.tpl"
 
-	this.TplNames = "login.tpl"
+	this.TplName = "login.tpl"
 }
 
 func (this *UsersController) LoginPost() {

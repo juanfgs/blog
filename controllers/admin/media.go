@@ -48,7 +48,7 @@ func (this *MediaController) Create() {
 			this.Abort("500")
 		}
 		this.Data["json"] = &media
-		this.ServeJson()
+		this.ServeJSON()
 
 	}
 
@@ -58,7 +58,7 @@ func (this *MediaController) Upload() {
 	this.Layout = "admin/index.tpl"
 	this.Data["title"] = "Upload media"
 
-	this.TplNames = "admin/uploadform.tpl"
+	this.TplName = "admin/uploadform.tpl"
 }
 
 func (this *MediaController) Index() {
@@ -76,7 +76,7 @@ func (this *MediaController) Index() {
 
 	this.Data["media"] = media
 
-	this.TplNames = "admin/media.tpl"
+	this.TplName = "admin/media.tpl"
 
 }
 
