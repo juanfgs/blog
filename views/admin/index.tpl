@@ -153,7 +153,10 @@
                                         </li>
 					<li>
 					  <a href="/admin/comments"><i class="fa fa-comments fa-fw"></i>Comments</a>
-					</li>					
+					</li>
+                                        <li>
+                                            <a href="/admin/posts/export"><i class="fa fa-file fa-fw"></i>Export Posts</a>
+                                        </li>					
 				  </ul>
                                 </li>
                                 <li>
