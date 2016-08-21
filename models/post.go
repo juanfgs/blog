@@ -4,6 +4,7 @@ import (
 	"regexp"
 	"strings"
 	"time"
+	"fmt"
 	"log"
 )
 
@@ -37,4 +38,12 @@ func GenerateSlug(title string) []byte {
 	safe := reg.ReplaceAllString(title, "-")
 	return []byte(strings.ToLower(strings.Trim(safe, "-")))
 
+}
+
+func (this *Post) Url() string{
+	if len(this.Slug) > 0 {
+		return fmt.Sprintf("/post/%s", this.Slug)
+	} else {
+		return fmt.Sprintf("/post/%d", this.Id )	
+	}
 }

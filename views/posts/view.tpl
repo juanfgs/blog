@@ -116,11 +116,11 @@
   var recaptcha2;  
   var loadRecaptcha = function() {
   recaptcha1 = grecaptcha.render('recaptcha1', {
-  'sitekey': '6LcBH_oSAAAAAPCKHLRUVglylkLo2xQ_bOycnYow',
+  'sitekey': '6LcCGCcTAAAAAGRJNDfztIpkAF4QG2-lCprYMoam',
   'theme': 'light'
   });
   recaptcha2 = grecaptcha.render('recaptcha2', {
-  'sitekey': '6LcBH_oSAAAAAPCKHLRUVglylkLo2xQ_bOycnYow',
+  'sitekey': '6LcCGCcTAAAAAGRJNDfztIpkAF4QG2-lCprYMoam',
   'theme': 'light'
   });  
   };

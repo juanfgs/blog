@@ -17,6 +17,7 @@ func init(){
 	orm.RegisterModel(new(Media))
 	orm.RegisterModel(new(Setting))
 	orm.RegisterModel(new(Page))
+	orm.RegisterModel(new(Notification))
 	
 	dbpass := beego.AppConfig.String("dbpass")
 	dbuser := beego.AppConfig.String("dbuser")

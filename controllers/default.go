@@ -15,6 +15,7 @@ func (this *MainController) Prepare(){
 	var sessionName = beego.AppConfig.String("SessionName")
 	v := this.GetSession(sessionName)
 
+	o := orm.NewOrm()
 	if v != nil { //user logged in
 		user, err:= models.NewUser(v.(int))
 		if err != nil {
@@ -22,8 +23,21 @@ func (this *MainController) Prepare(){
 			return
 		}
 		this.Data["User"] = user
+
+		// Load notifications
+		
+		var notifications []models.Notification
+		o.QueryTable("notifications").Filter("status", models.NotificationStatusNew).OrderBy("-created_at").Limit(5).All(&notifications)
+		cnt, err := o.QueryTable("notifications").Filter("status", models.NotificationStatusNew).Count()
+		
+		if err != nil {
+			panic(err)
+		}
+
+		this.Data["HasNotifications"] = (len(notifications) > 0)
+		this.Data["NotificationCount"] = cnt
+		this.Data["Notifications"] = &notifications
 	}
-	o := orm.NewOrm()
 	var categories []models.Category
 	o.QueryTable("categories").All(&categories)
 

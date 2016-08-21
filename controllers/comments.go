@@ -12,6 +12,7 @@ import (
 	"net/url"
 	"strconv"
 	"time"
+	"fmt"
 )
 
 type CommentsController struct {
@@ -28,7 +29,7 @@ func (this *CommentsController) CommentWrite() {
 	var err error
 	flash := beego.NewFlash()
 	o := orm.NewOrm()
-
+	// build comment
 	comment := new(models.Comment)
 	comment.Commenter = this.GetString("commenter")
 	comment.Comment = this.GetString("comment")
@@ -37,10 +38,11 @@ func (this *CommentsController) CommentWrite() {
 		o.QueryTable("comments").Filter("id", id).One(&parent)
 		comment.Parent = &parent
 	}
-
+	
+	// Process Recaptcha
 	var recaptcha_response = this.GetString("g-recaptcha-response")
 	recaptchaKey := beego.AppConfig.String("recaptchaKey")
-
+	
 	recaptchaData := url.Values{}
 	recaptchaData.Set("secret", recaptchaKey)
 	recaptchaData.Set("response", recaptcha_response)
@@ -66,21 +68,37 @@ func (this *CommentsController) CommentWrite() {
 			var post models.Post
 			o.QueryTable("posts").Filter("id", postid).One(&post)
 			comment.Post = &post
-		}
-		comment.CreatedAt = time.Now()
-		comment.UpdatedAt = time.Now()
+			comment.CreatedAt = time.Now()
+			comment.UpdatedAt = time.Now()
+			
+			_, err = o.Insert(comment)
+			if err != nil {
+				log.Println(err)
+				flash.Error("Error inserting Comment")
+				flash.Store(&this.Controller)
+				return
+			}
 
-		_, err = o.Insert(comment)
-		if err != nil {
-			log.Println(err)
-			flash.Error("Error inserting Comment")
+			// Generate a notification
+			var notification *models.Notification = new(models.Notification)
+			notification.Message = fmt.Sprintf("%s", comment.Commenter, post.Url(), post.Title )
+			notification.Status = models.NotificationStatusNew
+			notification.Type = models.NotificationTypeComment
+			notification.CreatedAt = time.Now()
+			notification.UpdatedAt = time.Now()
+			log.Println(notification)
+			
+			_,err = o.Insert(notification)
+			
+		
+			if err != nil {
+				log.Println(err)
+			}
+			
+			flash.Notice("Comment Added")
 			flash.Store(&this.Controller)
-			return
+			this.Redirect(this.Ctx.Input.Refer(), 302)
 		}
-
-		flash.Notice("Comment Added")
-		flash.Store(&this.Controller)
-		this.Redirect(this.Ctx.Input.Refer(), 302)
 	} else {
 		flash.Notice("Captcha failed")
 		flash.Store(&this.Controller)
