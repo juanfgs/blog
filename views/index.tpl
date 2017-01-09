@@ -147,7 +147,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Juan Francisco Gim&eacute;nez Silva 2014</p>
+                    <p class="copyright text-muted">Copyright &copy; Juan Francisco Gim&eacute;nez Silva 2016</p>
                 </div>
             </div>
         </div>
