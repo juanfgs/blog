@@ -89,7 +89,7 @@
 
                  <ul class="nav nav-stacked" id="sidebar">
                      <li class="well"><a href="#author">Juan F. Giménez Silva</a>
-                         <img src="static/img/author.png" class="img-circle center" id="author"/>
+                         <img src="/static/img/author.png" class="img-circle center" id="author"/>
                          <p class="author-bio">Hola, bienvenidos a mi blog. Aquí encontrarán articulos sobre informática, programación y política.</p>
                      </li> 
 
