@@ -29,7 +29,7 @@ func (this *FeedsController) Index() {
 	channel := rss.NewChannel("Juan Giménez Silva Posts", "/feeds.xml", "Feed of posts from Juan's blog")
 
 	for _, post := range posts {
-		postContent := helpers.RenderPost(post.Content, post.ContentType)
+		postContent := helpers.RenderPost(post.Content, post.ContentType, true)
 		channel.Add(  post.Title, fmt.Sprintf("/posts/view/%d", post.Id), postContent  )
 	}
 
@@ -67,7 +67,7 @@ func (this *FeedsController) Category() {
 	channel := rss.NewChannel("Juan Giménez Silva Posts", "/feeds.xml", "Feed of posts for " + category.Title)
 
 	for _, post := range category.Posts {
-		postContent := helpers.RenderPost(post.Content, post.ContentType)
+		postContent := helpers.RenderPost(post.Content, post.ContentType, true)
 		channel.Add(  post.Title, fmt.Sprintf("/posts/view/%d", post.Id), postContent  )
 	}
 
