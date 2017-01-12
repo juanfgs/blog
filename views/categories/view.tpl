@@ -1,20 +1,5 @@
-<header class="intro-header" style="background-image: url('/static/img/category-bg.jpg')">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="site-heading">
-          <h1>{{ .HeroTitle }}</h1>
-          <hr class="small">
-          <span class="subheading">{{ str2html .HeroTagline }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
 
 <!-- Main Content -->
-<div class="container">
-  <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       {{ range $key, $post := .posts }}
       <div class="post-preview">
@@ -23,7 +8,7 @@
 	    {{ $post.Title }}
 	  </h2>
 	</a>
-	    {{ renderPost $post.Content $post.ContentType | str2html  }}
+	    {{ renderPost $post.Content $post.ContentType true | str2html  }}
 
 
 	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>
@@ -57,11 +42,6 @@
 {{end}}
 
     </div>
-  </div>
-</div>
-
-<hr>
-
 
 
 

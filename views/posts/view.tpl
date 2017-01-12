@@ -6,7 +6,7 @@
                     <h1>{{ .Post.Title }}</h1>
                     <hr/>
                     <h2>{{ .Post.Tagline }}</h2>
-               	{{ renderPost .Post.Content .Post.ContentType | str2html }}
+               	{{ renderPost .Post.Content .Post.ContentType false| str2html }}
                 </div>
                 <div class="col-lg-2  col-md-1 " id="author-sidebar">
                     <div class="panel panel-default">
