@@ -45,13 +45,13 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">Activar Navegación</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="/" class="navbar-brand">Home</a>
+                <a href="/" class="navbar-brand">Inicio</a>
 
             </div>
 
@@ -61,16 +61,16 @@
 
 
                     <li>
-                        <a href="#search">Search</a>
+                        <a href="#search">Busqueda</a>
                     </li>
 
 		    {{ if .User }}
                     <li>
-                        <a href="/admin/">Welcome {{ .User.Username }}</a>
+                        <a href="/admin/">Bienvenido {{ .User.Username }}</a>
                     </li>
 		    {{ else }}
 		    <li>
-                        <a href="/login/">Log In</a>
+                        <a href="/login/">Iniciar Sesión</a>
                     </li>
 		    {{ end }}
                 </ul>
@@ -121,9 +121,9 @@
     <div id="search">
       <button type="button" class="close">×</button>
       <form action="/search/" method="GET">
-        <input type="search" value="" name="keyword" placeholder="type keyword(s) here" />
+        <input type="search" value="" name="keyword" placeholder="ingrese palabra(s) clave(s)" />
         <input type="text" value="" name="imnotahuman" style="display:none;" />	
-        <input type="submit" class="btn btn-primary" value="Search">
+        <input type="submit" class="btn btn-primary" value="Buscar">
       </form>
     </div>
 
