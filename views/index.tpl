@@ -21,14 +21,13 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
     <link href="/static/css/prism.css" rel="stylesheet">	      
       <link href="/static/css/style.css" rel="stylesheet">
 
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,700|Bree+Serif|Lato:400,700|Inconsolata' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Abel|Asap|Exo+2|Inconsolata" rel="stylesheet"> 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,7 +41,7 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav class="navbar navbar-default ">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -60,26 +59,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-
-                  <li class="dropdown">
-		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages <span class="caret"></span></a>
-		      <ul class="dropdown-menu" role="menu">
-			{{ range $key, $page :=  .Pages}}
-			<li><a href="/page/{{ $page.Slug }}">{{ $page.Title }}</a></li>
-			{{ end }}
-		      </ul>
-
-                    </li>
-
-                    <li class="dropdown">
-		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
-		      <ul class="dropdown-menu" role="menu">
-			{{ range $key, $category :=  .Categories}}
-			<li><a href="/categories/{{ $category.Id }}">{{ $category.Title }}</a></li>
-			{{ end }}
-		      </ul>
-
-                    </li>
 
 
                     <li>
@@ -103,9 +82,38 @@
     </nav>
 
     <!-- Page Header -->
- 
+ <div class="container-fluid">
+     <div class="row">
 
-    {{ .LayoutContent }}
+         <div class=" col-lg-2 col-md-1">
+         <div class="wrapper ">
+          <ul class="nav nav-stacked" id="sidebar">
+                   <li> <a href="#pages">Pages</a>
+		      <ul id="pages">
+			{{ range $key, $page :=  .Pages}}
+			<li><a href="/page/{{ $page.Slug }}">{{ $page.Title }}</a></li>
+			{{ end }}
+		      </ul>
+
+                    </li>
+
+                    <li><a href="#categories">Categories</a>
+		      <ul id="categories">
+			{{ range $key, $category :=  .Categories}}
+			<li><a href="/categories/{{ $category.Id }}">{{ $category.Title }}</a></li>
+			{{ end }}
+		      </ul>
+
+                    </li>
+
+             
+
+          </ul>
+      </div>
+      </div>
+      {{ .LayoutContent }}
+  </div>
+ </div>
     <!-- Set your background image for this header on the line below. -->
     <div id="search">
       <button type="button" class="close">×</button>

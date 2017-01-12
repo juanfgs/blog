@@ -1,25 +1,24 @@
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('/static/img/post-bg.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
-                        <h1>{{ .Post.Title }}</h1>
-                        <h2 class="subheading">{{ .Post.Tagline}}</h2>
-                        <span class="meta">Posted by <a href="http://juanfgs.eosweb.info">{{ .Post.Author.Username}}</a> {{ .Post.CreatedAt}}</span>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </header>
-
     <!-- Post Content -->
     <article>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="post">
+                <div class="col-lg-10  col-md-8" id="post">
+                    <h1>{{ .Post.Title }}</h1>
+                    <hr/>
+                    <h2>{{ .Post.Tagline }}</h2>
                	{{ renderPost .Post.Content .Post.ContentType | str2html }}
+                </div>
+                <div class="col-lg-2  col-md-1 " id="author-sidebar">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           Post information 
+                            
+                        </div>
+                        <div class="panel-body">
+                            <span class="meta">Posted by <a href="http://juanfgs.eosweb.info">{{ .Post.Author.Username}}</a> {{ .Post.CreatedAt}}</span>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -31,7 +30,7 @@
     <div class="container">
      
       <div class="row">
-	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	<div class="col-lg-8 col-md-10">
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>Leave a Comment:</h4>

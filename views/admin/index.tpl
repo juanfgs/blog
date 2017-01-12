@@ -13,7 +13,7 @@
     <title>{{ .Title }}</title>
 
 
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.admin.min.css" rel="stylesheet">
     <link href="/static/css/admin.css" rel="stylesheet">
 
     <!-- Custom CSS -->
