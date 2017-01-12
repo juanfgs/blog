@@ -8,7 +8,7 @@
 }
 .intro-header .post-heading .meta,
 body {
-    font-family: 'Abel',  serif;
+    font-family: 'Crimson Text',  serif;
     font-size:2em;
 }
 pre,
@@ -16,7 +16,7 @@ pre code {font-family:'Inconsolata', monospace;}
 
 .intro-header .site-heading .subheading,
 .navbar-default {
-    font-family:'Exo 2', sans-serif;
+    font-family:'Raleway', sans-serif;
     margin-bottom:0;
     border-radius:0;
 }
@@ -57,7 +57,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Asap', serif;
+    font-family: 'Gurajada', serif;
   font-weight: 800;
 }
 

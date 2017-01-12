@@ -27,8 +27,7 @@
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Abel|Asap|Exo+2|Inconsolata" rel="stylesheet"> 
-
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Gurajada|Inconsolata|Raleway" rel="stylesheet"> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
