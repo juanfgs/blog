@@ -27,7 +27,7 @@
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Gurajada|Inconsolata|Raleway" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Libre+Baskerville|Inconsolata|Raleway" rel="stylesheet"> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,7 +61,7 @@
 
 
                     <li>
-                        <a href="#search">Busqueda</a>
+                        <a href="#search">Búsqueda</a>
                     </li>
 
 		    {{ if .User }}
@@ -85,9 +85,23 @@
      <div class="row">
 
          <div class=" col-lg-2 col-md-1">
-         <div class="wrapper ">
+             <div class="wrapper ">
+
           <ul class="nav nav-stacked" id="sidebar">
-                   <li> <a href="#pages">Pages</a>
+              <li><a href="#sidebar-search">Búsqueda</a>
+
+                  <form action="/search/" method="GET" class="form-inline search" id="sidebar-search">
+                      <div class="form-group">
+                          <div class="input-group">
+                              <input type="text" value="" name="imnotahuman" style="display:none;" />	
+                              <input type="search" value=""  class="form-control" name="keyword" placeholder="palabra(s) clave(s)" />
+                              <div class="input-group-addon"><input type="submit" id="search_button" value="Buscar"></div>
+                          </div>
+                      </div>
+                  </form>
+        
+              </li>
+                   <li> <a href="#pages">Páginas</a>
 		      <ul id="pages">
 			{{ range $key, $page :=  .Pages}}
 			<li><a href="/page/{{ $page.Slug }}">{{ $page.Title }}</a></li>
@@ -96,7 +110,7 @@
 
                     </li>
 
-                    <li><a href="#categories">Categories</a>
+                    <li><a href="#categories">Categorías</a>
 		      <ul id="categories">
 			{{ range $key, $category :=  .Categories}}
 			<li><a href="/categories/{{ $category.Id }}">{{ $category.Title }}</a></li>
@@ -104,7 +118,7 @@
 		      </ul>
 
                     </li>
-                    <li><a href="#links">Links</a>
+                    <li><a href="#links">Enlaces</a>
 		      <ul id="links">
 			{{ range $key, $link :=  .Links}}
 			<li><a href="{{ $link.Url }}">{{ $link.Title }}</a></li>
