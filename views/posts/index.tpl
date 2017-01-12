@@ -10,9 +10,9 @@
 	  {{ else }}
 	  <a href="/post/{{ $post.Id }}">	  
 	{{ end }}
-	  <h2 class="post-title">
+	  <h1 class="post-title">
 	    {{ $post.Title }}
-	  </h2>	
+	  </h1>	
 	  </a>
 	  <p>
 
