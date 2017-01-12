@@ -35,6 +35,15 @@ func init() {
 	beego.Router("/admin/categories/edit/:id", &admin.CategoriesController{}, "post:EditWrite")
 	beego.Router("/admin/categories/delete/:id([0-9]+)", &admin.CategoriesController{}, "get:Delete")
 
+
+	beego.Router("/admin/links/", &admin.LinksController{}, "get:Index")
+	beego.Router("/admin/links/new", &admin.LinksController{}, "get:New")
+	beego.Router("/admin/links/new", &admin.LinksController{}, "post:NewWrite")
+	beego.Router("/admin/links/edit/:id", &admin.LinksController{}, "get:Edit")
+	beego.Router("/admin/links/edit/:id", &admin.LinksController{}, "post:EditWrite")
+	beego.Router("/admin/links/delete/:id([0-9]+)", &admin.LinksController{}, "get:Delete")
+
+	
 	beego.Router("/admin/comments/", &admin.CommentsController{}, "get:Index")
 	beego.Router("/admin/comments/delete/:id([0-9]+)", &admin.CommentsController{}, "get:Delete")
 	beego.Router("/admin/comments/edit/:id([0-9]+)", &admin.CommentsController{}, "get:Edit")

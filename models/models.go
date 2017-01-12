@@ -18,6 +18,7 @@ func init(){
 	orm.RegisterModel(new(Setting))
 	orm.RegisterModel(new(Page))
 	orm.RegisterModel(new(Notification))
+	orm.RegisterModel(new(Link))
 	
 	dbpass := beego.AppConfig.String("dbpass")
 	dbuser := beego.AppConfig.String("dbuser")

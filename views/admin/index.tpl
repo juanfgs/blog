@@ -129,6 +129,10 @@
                                 <li>
                                     <a href="/admin/pages"><i class="fa fa-globe fa-fw"></i>Pages</a>
                                 </li>
+                                <li>
+                                    <a href="/admin/links"><i class="fa fa-link fa-fw"></i>Links</a>
+                                </li>
+
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

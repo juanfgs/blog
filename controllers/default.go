@@ -43,10 +43,13 @@ func (this *MainController) Prepare(){
 
 	var pages []models.Page
 	o.QueryTable("pages").All(&pages)
+	var links []models.Link
+	o.QueryTable("links").All(&links)
 
 	this.Data["Categories"] = &categories
 	this.Data["Pages"] = &pages
 
+	this.Data["Links"] = &links
 
 
 }

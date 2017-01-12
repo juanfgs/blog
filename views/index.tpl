@@ -105,9 +105,13 @@
 		      </ul>
 
                     </li>
-
-             
-
+                    <li><a href="#links">Links</a>
+		      <ul id="links">
+			{{ range $key, $link :=  .Links}}
+			<li><a href="{{ $link.Url }}">{{ $link.Title }}</a></li>
+			{{ end }}
+		      </ul>
+                    </li>
           </ul>
       </div>
       </div>
