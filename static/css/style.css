@@ -20,6 +20,7 @@ pre code {font-family:'Inconsolata', monospace;}
     margin-bottom:0;
     border-radius:0;
 }
+.pagination,
 .btn,
 .post-meta,
 .btn-group-sm{
