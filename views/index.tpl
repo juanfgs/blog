@@ -150,7 +150,7 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8  col-md-10 ">
                     <ul class="list-inline text-center">
                         <li>
                             <a href="http://twitter.com/juanfgs">
