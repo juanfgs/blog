@@ -8,7 +8,7 @@
 	    {{ $post.Title }}
 	  </h2>
 	</a>
-	    {{ renderPost $post.Content $post.ContentType true | str2html  }}
+	    {{ renderPost $post.Content $post.ContentType false | str2html  }}
 
 
 	<p class="post-meta">Posted by <a href="#">Juan</a> on {{ .CreatedAt}}</p>

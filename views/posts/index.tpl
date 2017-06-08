@@ -16,7 +16,7 @@
 	  </a>
 	  <p>
 
-	    {{ renderPost  $post.Content $post.ContentType true | str2html   }}
+	    {{ renderPost  $post.Content $post.ContentType false | str2html   }}
 	    <div class="btn-group-sm" role="group">
 	      <a  class="btn  btn-default" href="/post/{{ $post.Id }}">Leer Más</a>
 	      <a class="btn  btn-primary" href="/post/{{ $post.Id }}"> {{ len $post.Comments }}</a>	    
