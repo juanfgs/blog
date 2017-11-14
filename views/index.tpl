@@ -27,7 +27,7 @@
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Gurajada|Inconsolata|Raleway" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Libre+Baskerville|Inconsolata|Raleway" rel="stylesheet"> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,13 +45,13 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">Activar Navegación</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="/" class="navbar-brand">Home</a>
+                <a href="/" class="navbar-brand">Inicio</a>
 
             </div>
 
@@ -61,16 +61,16 @@
 
 
                     <li>
-                        <a href="#search">Search</a>
+                        <a href="#search">Búsqueda</a>
                     </li>
 
 		    {{ if .User }}
                     <li>
-                        <a href="/admin/">Welcome {{ .User.Username }}</a>
+                        <a href="/admin/">Bienvenido {{ .User.Username }}</a>
                     </li>
 		    {{ else }}
 		    <li>
-                        <a href="/login/">Log In</a>
+                        <a href="/login/">Iniciar Sesión</a>
                     </li>
 		    {{ end }}
                 </ul>
@@ -84,10 +84,29 @@
  <div class="container-fluid">
      <div class="row">
 
-         <div class=" col-lg-2 col-md-1">
-         <div class="wrapper ">
-          <ul class="nav nav-stacked" id="sidebar">
-                   <li> <a href="#pages">Pages</a>
+         <div class="col-lg-2 col-md-1 col-sm-1 hidden-sm hidden-md" id="sidebar-col">
+             <div class="wrapper ">
+
+                 <ul class="nav nav-stacked" id="sidebar">
+                     <li class="well" id="author-info"><a href="#author">Juan F. Giménez Silva</a>
+                         <img src="/static/img/author.png" class="img-circle center" id="author"/>
+                         <p class="author-bio">Hola, bienvenidos a mi blog. Aquí encontrarán articulos sobre informática, programación y política.</p>
+                     </li> 
+
+              <li><a href="#sidebar-search">Búsqueda</a>
+
+                  <form action="/search/" method="GET" class="form-inline search" id="sidebar-search">
+                      <div class="form-group">
+                          <div class="input-group">
+                              <input type="text" value="" name="imnotahuman" style="display:none;" />	
+                              <input type="search" value=""  class="form-control" name="keyword" placeholder="palabra(s) clave(s)" />
+                              <div class="input-group-addon"><input type="submit" id="search_button" value="Buscar"></div>
+                          </div>
+                      </div>
+                  </form>
+        
+              </li>
+                   <li> <a href="#pages">Páginas</a>
 		      <ul id="pages">
 			{{ range $key, $page :=  .Pages}}
 			<li><a href="/page/{{ $page.Slug }}">{{ $page.Title }}</a></li>
@@ -96,7 +115,7 @@
 
                     </li>
 
-                    <li><a href="#categories">Categories</a>
+                    <li><a href="#categories">Categorías</a>
 		      <ul id="categories">
 			{{ range $key, $category :=  .Categories}}
 			<li><a href="/categories/{{ $category.Id }}">{{ $category.Title }}</a></li>
@@ -104,7 +123,7 @@
 		      </ul>
 
                     </li>
-                    <li><a href="#links">Links</a>
+                    <li><a href="#links">Enlaces</a>
 		      <ul id="links">
 			{{ range $key, $link :=  .Links}}
 			<li><a href="{{ $link.Url }}">{{ $link.Title }}</a></li>
@@ -121,9 +140,9 @@
     <div id="search">
       <button type="button" class="close">×</button>
       <form action="/search/" method="GET">
-        <input type="search" value="" name="keyword" placeholder="type keyword(s) here" />
+        <input type="search" value="" name="keyword" placeholder="ingrese palabra(s) clave(s)" />
         <input type="text" value="" name="imnotahuman" style="display:none;" />	
-        <input type="submit" class="btn btn-primary" value="Search">
+        <input type="submit" class="btn btn-primary" value="Buscar">
       </form>
     </div>
 
@@ -131,7 +150,7 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8  col-md-10 ">
                     <ul class="list-inline text-center">
                         <li>
                             <a href="http://twitter.com/juanfgs">

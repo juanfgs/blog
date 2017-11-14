@@ -8,7 +8,7 @@
                     <hr/>
                     <h2>{{ .Page.Tagline }}</h2>
 
-               	{{ renderPost .Page.Content .Page.ContentType | str2html }}
+               	{{ renderPost .Page.Content .Page.ContentType false | str2html }}
                 </div>
             </div>
         </div>
