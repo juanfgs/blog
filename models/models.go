@@ -24,8 +24,8 @@ func init(){
 	dbuser := beego.AppConfig.String("dbuser")
 	dbhost := beego.AppConfig.String("dbhost")
 	dbname := beego.AppConfig.String("dbname")
+	dbport := beego.AppConfig.String("dbport")
 	dbcharset := beego.AppConfig.String("dbcharset")
 	
-
-	orm.RegisterDataBase("default", "mysql", dbuser+":"+dbpass+"@"+dbhost+"/"+dbname+ "?charset=" +dbcharset)
+	orm.RegisterDataBase("default", "mysql", dbuser+":"+dbpass+"@tcp("+dbhost+":"+dbport+")/"+dbname+ "?charset=" +dbcharset)
 }

@@ -1,0 +1,37 @@
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Posts 
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Date Created</th>
+                        <th>Date Updated</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Date Created</th>
+                        <th>Date Updated</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr *ngFor="let post of posts">
+                        <td>{{ post.Id }}</td>
+                        <td>{{ post.Title }} </td>
+                        <td>{{ post.CreatedAt }}</td>
+                        <td>{{ post.UpdatedAt }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+
+</div>

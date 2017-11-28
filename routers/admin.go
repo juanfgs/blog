@@ -6,14 +6,11 @@ import (
 )
 
 func init() {
-	beego.Router("/admin/", &admin.PostsController{}, "get:Index")
-	beego.Router("/admin/posts", &admin.PostsController{}, "get:Index")
-	beego.Router("/admin/posts/new", &admin.PostsController{}, "get:New")
-	beego.Router("/admin/posts/new", &admin.PostsController{}, "post:NewWrite")
-	beego.Router("/admin/posts/edit/:id([0-9]+)", &admin.PostsController{}, "get:Edit")
-	beego.Router("/admin/posts/edit/:id([0-9]+)", &admin.PostsController{}, "post:EditWrite")
-	beego.Router("/admin/posts/delete/:id([0-9]+)", &admin.PostsController{}, "get:Delete")
-	beego.Router("/admin/posts/export", &admin.PostsController{}, "get:Export")
+	//dashboard
+	beego.Router("/admin/", &admin.DashboardController{}, "get:Index")
+	
+	beego.Router("/admin/posts/:id([0-9]+)", &admin.PostsController{}, "get:GetPost")
+	beego.Router("/admin/posts/", &admin.PostsController{}, "get:GetPosts")
 	// Pages
 	beego.Router("/admin/pages", &admin.PagesController{}, "get:Index")
 	beego.Router("/admin/pages/new", &admin.PagesController{}, "get:New")
