@@ -19,20 +19,19 @@ func (this *UsersController) Login() {
 }
 
 func (this *UsersController) LoginPost() {
-
 	username := this.GetString("Username")
 	password := this.GetString("Password")
 	flash := beego.NewFlash()
 	if user, err := models.GetUserByName(username); err == nil {
 		if user.CheckPassword(password) {
 			var sessionName = beego.AppConfig.String("SessionName")
-			
+
 			v := this.GetSession(sessionName)
 
 			if v == nil {
 				this.SetSession(sessionName, user.Id)
-			
-			}		
+
+			}
 			flash.Notice("Login Successful")
 			flash.Store(&this.Controller)
 			this.Redirect("/admin/", 302)
@@ -52,7 +51,7 @@ func (this *UsersController) LoginPost() {
 		log.Println(err)
 	}
 
-	this.Redirect("/login", 302)
+	this.Redirect("/admin/", 302)
 }
 
 func (this *UsersController) Logout() {
@@ -84,7 +83,7 @@ func (this *UsersController) RegisterPost() {
 		flash.Error( "User already exists")
 		flash.Store(&this.Controller)
 		this.Redirect("/login", 302)
-		return 
+		return
 	}
 
 	if valid.HasErrors() {

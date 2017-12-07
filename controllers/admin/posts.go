@@ -10,6 +10,13 @@ import (
 type PostsController struct {
 	controllers.MainController
 }
+func (this *PostsController) PutPost(){
+	
+}
+
+func (this *PostsController) PatchPost(){
+	
+}
 
 func (this *PostsController) GetPost(){
 
@@ -24,7 +31,7 @@ func (this *PostsController) GetPost(){
 	o := orm.NewOrm()
 	err = o.QueryTable("posts").Filter("id", id).One(&post)
 
-	this.Data["post"] = &post
+	this.Data["json"] = &post
 	this.ServeJSON()
 }
 

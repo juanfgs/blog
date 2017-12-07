@@ -3,7 +3,6 @@ package admin
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/astaxie/beego/utils/pagination"
 	"github.com/juanfgs/blog/controllers"
 	"github.com/juanfgs/blog/models"
 	"log"
@@ -14,21 +13,17 @@ type CategoriesController struct {
 }
 
 func (this *CategoriesController) Index() {
-	this.Layout = "admin/index.tpl"
-	this.Data["Title"] = "Category List"
 	var categories []models.Category
 	o := orm.NewOrm()
-	categoriesPerPage := 10
-	countCategories, err := o.QueryTable("categories").Count()
+	_, err := o.QueryTable("categories").Count()
 	if err != nil {
 		log.Println(err)
 	}
-	paginator := pagination.SetPaginator(this.Ctx, categoriesPerPage, countCategories)
-	o.QueryTable("categories").Limit(categoriesPerPage, paginator.Offset()).All(&categories)
+	o.QueryTable("categories").All(&categories)
 
-	this.Data["Categories"] = categories
+	this.Data["json"] = categories
 
-	this.TplName = "admin/categories/index.tpl"
+	this.ServeJSON()
 }
 
 func (this *CategoriesController) New() {

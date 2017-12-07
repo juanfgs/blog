@@ -2,7 +2,11 @@
     <div class="card-header">
         <i class="fa fa-table"></i> Posts 
     </div>
+    
     <div class="card-body">
+        
+        <app-post-form [post]="currentPost"></app-post-form>
+        
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -24,7 +28,7 @@
                 <tbody>
                     <tr *ngFor="let post of posts">
                         <td>{{ post.Id }}</td>
-                        <td>{{ post.Title }} </td>
+                        <td (click)="onSelect(post.Id)">{{ post.Title }} </td>
                         <td>{{ post.CreatedAt }}</td>
                         <td>{{ post.UpdatedAt }}</td>
                     </tr>

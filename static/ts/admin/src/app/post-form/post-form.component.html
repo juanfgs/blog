@@ -1,0 +1,57 @@
+
+<div class="row" *ngIf="post">
+    <div class="col-md-6">
+<form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
+  <h2>{{ post.Title | uppercase }} </h2>
+  <div>
+      <div class="form-group">
+    <label>Title:
+    </label>
+      <input [(ngModel)]="post.Title" type="text" class="form-control" placeholder="Title" name="Title" required />
+    </div>
+      <div class="form-group">
+    <label>Tagline:
+    </label>
+      <input [(ngModel)]="post.Tagline" type="text" class="form-control" placeholder="Tagline" name="Tagline"/>
+    </div>
+      <div class="form-group">
+    <label>Slug:
+    </label>
+      <input [(ngModel)]="post.Slug" type="text" class="form-control" placeholder="Slug" name="Slug"/>
+    </div>
+      <div class="form-group">
+    <label>Content:
+    </label>
+      <textarea [(ngModel)]="post.Content"  class="form-control" placeholder="Content" name="Content" required ></textarea>
+    </div>
+       <div class="form-group">
+    <label>Category:
+    </label>
+    <select [compareWith]="compareCategories" [(ngModel)]="post.Category" type="text" class="form-control" name="CategoryId" >
+        <option *ngFor="let category of categories" [ngValue]="category"  >{{category.Title}}</option>
+    </select>
+    </div>
+      
+      <input [(ngModel)]="post.Id" type="hidden" name="Id"/>
+      <input type="submit"class="btn btn-primary" value="save" name="save" /> 
+  </div>
+
+</form>
+    </div>
+    <div class="col-md-6">  
+        <div class="browser">
+	        <div class="browser-navigation-bar">
+                <i></i><i></i><i></i>
+                <!-- Place your URL into <input> below -->
+                <input value="http://juanfgs.com/{{post.Slug}}" disabled />
+  	        </div>
+            
+            <div class="browser-container">
+                <!-- Place your content of any type here -->
+                <h2>{{post.Title}}</h2>
+                <h3>{{post.Tagline}}</h3>
+                <div [innerHTML]="post.Content"></div>
+            </div>
+        </div>
+    </div>
+</div>

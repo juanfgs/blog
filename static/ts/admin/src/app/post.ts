@@ -1,4 +1,11 @@
 export class Post {
-  id: number;
-  title: string;
+    Id: number;
+    Title: string;
+    Content: string;
+    Slug: string;
+    CategoryId: number;
+    ContentType:string;
+    Published: boolean;
+    Description:string;
+    
 }

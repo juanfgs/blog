@@ -1,32 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Post } from './post'
+import { Category } from './category'
 import {Observable} from 'rxjs/Rx'
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Injectable()
-export class PostService {
-    private postsUrl = '/admin/posts/';
+export class CategoryService {
+    private categoriesUrl = '/admin/categories/';
 
     constructor( private http: HttpClient ) { }
 
-
-    getPosts(): Observable<Post[]> {
-        return this.http.get<Post[]>(this.postsUrl);
+    getCategories(): Observable<Category[]> {
+        return this.http.get<Category[]>(this.categoriesUrl);
     }
-
-    getPost(id: number): Observable<Post> {
-        const url = `${this.postsUrl}${id}`;
-        return this.http.get<Post>(url).pipe(catchError(this.handleError<Post>(`getPost id={$id}`)));
+    getCategory(id: number): Observable<Category> {
+        const url = `${this.categoriesUrl}${id}`;
+        return this.http.get<Category>(url).pipe(catchError(this.handleError<Category>(`getCategory id={$id}`)));
     }
-
-    putPost(data ): void {
-        this.http.put('/admin/posts/'
-                              , data
-                             ).subscribe();
-    }
-
     private handleError<T> (operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
         // TODO: send the error to remote logging infrastructure
@@ -35,4 +27,5 @@ export class PostService {
         return of(result as T);
       };
     }
+
 }

@@ -1,0 +1,73 @@
+.browser {
+    width:100%;
+  font-size: 1.1em;
+	padding: 2.1em 0 0 0;
+	border-radius: 0.25em;
+	background: #ddd;
+	display: inline-block;
+	position: relative;
+  overflow: hidden;
+  box-shadow: 0 0.25em 0.9em -0.1em rgba(0,0,0,.3);
+}
+
+.browser .browser-navigation-bar {
+	display: block;
+  box-sizing: border-box;
+	height: 2.1em;
+	position: absolute;
+	top: 0;
+  padding: 0.3em;
+  width: 100%;
+  background: linear-gradient(to bottom, #edeaed 0%, #dddfdd 100%);
+  border-bottom: 2px solid #cbcbcb;
+}
+ 
+.browser i {
+  display: inline-block;
+	height: 0.7em;
+	width: 0.7em;
+	border-radius: 0.45em;
+	background-color: #eee;
+	margin: 0.4em 0.15em;
+}
+
+.browser i:nth-child(1) {background-color: rgb(255, 86, 79)}
+
+.browser i:nth-child(1):hover {background-color: rgb(255, 20, 25)}
+
+.browser i:nth-child(2) {background-color: rgb(255, 183, 42)}
+
+.browser i:nth-child(2):hover {background-color: rgb(230, 175, 42)}
+
+.browser i:nth-child(3) {background-color: rgb(37, 198, 58)}
+
+.browser i:nth-child(3):hover {background-color: rgb(10, 225, 10)}
+
+.browser input {
+  font-size: 0.75em;
+  vertical-align: top;
+  display: inline-block;
+	height: 1.6em;
+  color: #aaa;
+	width: calc(100% - 6em);
+  border: 0.1em solid #E1E1E1;
+	border-radius: 0.25em;
+	background-color: #eee;
+  margin: 0.1em;
+  padding: 0 0.4em;
+}
+
+.browser-container {
+    padding-left:20px;
+    padding-right:20px;
+    backgrond:#FEFEFE;
+    height: 480px;
+    font-size:0.9em;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  
+  text-align: center;
+}
+
+

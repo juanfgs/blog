@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../post';
 import {PostService} from '../post.service';
-
+import {Observable} from 'rxjs/Rx'
 
 @Component({
   selector: 'app-posts',
@@ -19,4 +19,9 @@ export class PostsComponent implements OnInit {
     }
     posts : Post[];
     title = 'app';
+    currentPost: Post;
+    onSelect(id: number): void {
+        this.postService.getPost(id).subscribe(post => this.currentPost = post);
+        
+    }
 }

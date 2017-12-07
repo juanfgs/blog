@@ -11,6 +11,8 @@ func init() {
 	
 	beego.Router("/admin/posts/:id([0-9]+)", &admin.PostsController{}, "get:GetPost")
 	beego.Router("/admin/posts/", &admin.PostsController{}, "get:GetPosts")
+	beego.Router("/admin/posts/:id([0-9]+)", &admin.PostsController{}, "put:PatchPost")
+	beego.Router("/admin/posts/", &admin.PostsController{}, "put:PutPost")
 	// Pages
 	beego.Router("/admin/pages", &admin.PagesController{}, "get:Index")
 	beego.Router("/admin/pages/new", &admin.PagesController{}, "get:New")
@@ -26,12 +28,11 @@ func init() {
 	beego.Router("/admin/media/delete/:id([0-9]+)", &admin.MediaController{}, "get:Delete")
 
 	beego.Router("/admin/categories/", &admin.CategoriesController{}, "get:Index")
-	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "get:New")
-	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "post:NewWrite")
-	beego.Router("/admin/categories/edit/:id", &admin.CategoriesController{}, "get:Edit")
+	beego.Router("/admin/categories/:id([0-9])", &admin.CategoriesController{}, "get:Edit")
 	beego.Router("/admin/categories/edit/:id", &admin.CategoriesController{}, "post:EditWrite")
 	beego.Router("/admin/categories/delete/:id([0-9]+)", &admin.CategoriesController{}, "get:Delete")
 
+	beego.Router("/admin/categories/new", &admin.CategoriesController{}, "post:NewWrite")
 
 	beego.Router("/admin/links/", &admin.LinksController{}, "get:Index")
 	beego.Router("/admin/links/new", &admin.LinksController{}, "get:New")
